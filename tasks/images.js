@@ -1,16 +1,16 @@
 'use strict';
 
-module.exports = (gulp, $, pkg) => {
+module.exports = (gulp, $, config) => {
   // @task: Process and minify images.
   const task = () => {
-    return gulp.src(pkg.gulpPaths.images.src)
+    return gulp.src(config.paths.images.src)
       .pipe($.imagemin([
         $.imagemin.gifsicle({ interlaced: true }),
         $.imagemin.jpegtran({ progressive: true }),
         $.imagemin.optipng({ optimizationLevel: 5 }),
         $.imagemin.svgo({ plugins: [{ cleanupIDs: false }] })
       ]))
-      .pipe(gulp.dest(pkg.gulpPaths.images.dest));
+      .pipe(gulp.dest($.path.join(config.paths.destDir, config.paths.images.dest)));
   };
 
   gulp.task('images', task);

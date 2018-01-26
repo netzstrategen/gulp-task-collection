@@ -1,6 +1,7 @@
 'use strict';
 
-module.exports = (gulp, $, pkg) => {
+module.exports = (gulp, $, config) => {
+  const pkg = require($.path.resolve('./package.json'));
   const reportError = require('../lib/error.js');
 
   // Copyright notice placed at top of compiled CSS
@@ -24,7 +25,7 @@ module.exports = (gulp, $, pkg) => {
 
   // @task: Build Sass styles from components.
   const task = (options = {}) => {
-    return gulp.src(pkg.gulpPaths.styles.src, { base: pkg.gulpPaths.styles.srcDir })
+    return gulp.src(config.paths.styles.src, { base: config.paths.styles.srcDir })
       .pipe($.plumber())
       .pipe($.stylelint({
         syntax: 'scss',
@@ -44,7 +45,7 @@ module.exports = (gulp, $, pkg) => {
       .pipe($.if(options.production, $.replace(copyrightPlaceholder, copyrightNotice)))
       .pipe($.if(options.production, $.cleanCss(cleanCssOptions)))
       .pipe($.if(options.production, $.rename({ suffix: '.min' })))
-      .pipe(gulp.dest(pkg.gulpPaths.styles.dest))
+      .pipe(gulp.dest($.path.join(config.paths.destDir, config.paths.styles.dest)))
       .pipe($.livereload());
   };
 

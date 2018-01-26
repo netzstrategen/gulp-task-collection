@@ -1,8 +1,7 @@
 'use strict';
 
-module.exports = (gulp, $, pkg) => {
-  const path = require('path');
-  const fractal = require(path.resolve(pkg.fractalConfigPath));
+module.exports = (gulp, $, config) => {
+  const fractal = require($.path.resolve(config.paths.fractal));
   // @task: Start Fractal server.
   start: {
     const task = () => {
