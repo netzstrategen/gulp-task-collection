@@ -1,8 +1,8 @@
 'use strict';
 
-module.exports = (gulp, $, pkg) => {
+module.exports = (gulp, $, config) => {
   // @task: Delete /dist directory.
-  const task = () => $.del(pkg.gulpPaths.destDir);
+  const task = () => $.del(config.paths.destDir);
 
   gulp.task('clean', task);
 }

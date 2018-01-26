@@ -1,13 +1,13 @@
 'use strict';
 
-module.exports = (gulp, $, pkg) => {
+module.exports = (gulp, $, config) => {
   // @task: Watch files for changes and reload.
   const watch = (callback) => {
     // Fractal automatically detects existing server instance.
     $.livereload.listen();
-    gulp.watch(pkg.gulpPaths.styles.src, gulp.series('styles'));
-    gulp.watch(pkg.gulpPaths.scripts.src, gulp.series('scripts'));
-    gulp.watch(pkg.gulpPaths.templates, (files) => {
+    gulp.watch(config.paths.styles.src, gulp.series('styles'));
+    gulp.watch(config.paths.scripts.src, gulp.series('scripts'));
+    gulp.watch(config.paths.templates, (files) => {
       $.livereload.changed(files);
     });
     callback(); // Required to stop Gulp throwing async competion error.

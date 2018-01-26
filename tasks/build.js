@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = (gulp, $, pkg) => {
+module.exports = (gulp, $, config) => {
   // @task: Build and minify all static assets.
   gulp.task('build', gulp.series('clean', gulp.parallel(
     'images',

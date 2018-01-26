@@ -31,35 +31,6 @@
     "stylelint-scss": "^2.2.0",
     "stylelint-selector-bem-pattern": "^2.0.0"
   },
-  "browserslist": [
-    "last 2 versions",
-    "ie 8",
-    "ie 9",
-    "android 2.3",
-    "android 4",
-    "opera 12"
-  ],
-  "gulpPaths": {
-    "destDir": "./dist",
-    "images": {
-      "src": "./assets/img/**/*.{jpg,jpeg,png,gif,svg}",
-      "dest": "./dist/img"
-    },
-    "scripts": {
-      "src": "./components/**/*.js",
-      "dest": "./dist/js"
-    },
-    "styleguide": "styleguide",
-    "styles": {
-      "srcDir": "./assets/scss",
-      "src": [
-        "./assets/scss/**/*.scss",
-        "./components/**/*.scss"
-      ],
-      "dest": "./dist/css"
-    },
-    "templates": "./templates/**/*.twig"
-  },
   "scripts": {
     "test": "mocha"
   },
