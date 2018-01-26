@@ -1,0 +1,69 @@
+{
+  "name": "@netzstrategen/gulp-task-collection",
+  "version": "1.0.0",
+  "title": "Gulp task collection",
+  "description": "A collection of gulp tasks.",
+  "main": "index.js",
+  "dependencies": {
+    "del": "^3.0.0",
+    "gulp": "^4.0.0",
+    "gulp-autoprefixer": "^4.0.0",
+    "gulp-clean-css": "^3.7.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-if": "^2.0.2",
+    "gulp-imagemin": "^3.1.1",
+    "gulp-livereload": "^3.8.1",
+    "gulp-load-plugins": "^1.5.0",
+    "gulp-notify": "^2.2.0",
+    "gulp-plumber": "^1.1.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-replace": "^0.6.1",
+    "gulp-sass": "~3.1.0",
+    "gulp-sass-glob": "^1.0.8",
+    "gulp-sass-glob": "^1.0.8",
+    "gulp-sourcemaps": "^2.6.0",
+    "gulp-stylelint": "^6.0.0",
+    "gulp-uglify-es": "^0.1.4",
+    "sass-module-importer": "^1.4.0",
+    "sassdoc": "^2.3.0",
+    "stylelint": "^8.4.0",
+    "stylelint-order": "^0.8.0",
+    "stylelint-scss": "^2.2.0",
+    "stylelint-selector-bem-pattern": "^2.0.0"
+  },
+  "browserslist": [
+    "last 2 versions",
+    "ie 8",
+    "ie 9",
+    "android 2.3",
+    "android 4",
+    "opera 12"
+  ],
+  "gulpPaths": {
+    "destDir": "./dist",
+    "images": {
+      "src": "./assets/img/**/*.{jpg,jpeg,png,gif,svg}",
+      "dest": "./dist/img"
+    },
+    "scripts": {
+      "src": "./components/**/*.js",
+      "dest": "./dist/js"
+    },
+    "styleguide": "styleguide",
+    "styles": {
+      "srcDir": "./assets/scss",
+      "src": [
+        "./assets/scss/**/*.scss",
+        "./components/**/*.scss"
+      ],
+      "dest": "./dist/css"
+    },
+    "templates": "./templates/**/*.twig"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "author": "netzstrategen <hallo@netzstrategen.com>",
+  "homepage": "http://www.netzstrategen.com",
+  "private": true
+}
