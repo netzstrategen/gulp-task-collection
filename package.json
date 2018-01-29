@@ -40,7 +40,7 @@
     "opera 12"
   ],
   "gulpPaths": {
-    "fractalConfigFilePath": "./fractal.config.js",
+    "fractalConfig": "./fractal.config.js",
     "destDir": "./dist",
     "images": {
       "src": "./assets/img/**/*.{jpg,jpeg,png,gif,svg}",
