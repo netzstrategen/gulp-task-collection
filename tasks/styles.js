@@ -23,7 +23,12 @@ module.exports = (gulp, $, pkg) => {
   };
 
   // @task: Build Sass styles from components.
-  const task = (options = {}) => {
+  const task = (args) => {
+    const options = Object.assign($.minimist(process.argv.slice(2), {
+      string: ['outputStyle'],
+      boolean: ['concat', 'sourcemaps', 'production'],
+      default: { concat: true },
+    }), args);
     return gulp.src(pkg.gulpPaths.styles.src, { base: pkg.gulpPaths.styles.srcDir })
       .pipe($.plumber())
       .pipe($.stylelint({
@@ -33,13 +38,13 @@ module.exports = (gulp, $, pkg) => {
           console: true
         }]
       }))
-      .pipe($.concat(pkg.title.toLowerCase().replace(/[^a-z]/g,'') + '.scss'))
+      .pipe($.if(options.concat, $.concat(pkg.title.toLowerCase().replace(/[^a-z]/g,'') + '.scss')))
       .pipe($.if(options.sourcemaps, $.sourcemaps.init()))
       .pipe($.sass({
         importer: $.sassModuleImporter(),
         outputStyle: options.outputStyle
       }).on('error', reportError))
-      .pipe($.autoprefixer(pkg.browserslist))
+      .pipe($.autoprefixer())
       .pipe($.if(options.sourcemaps, $.sourcemaps.write()))
       .pipe($.if(options.production, $.replace(copyrightPlaceholder, copyrightNotice)))
       .pipe($.if(options.production, $.cleanCss(cleanCssOptions)))

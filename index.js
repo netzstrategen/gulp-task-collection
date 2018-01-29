@@ -8,6 +8,8 @@ module.exports = function (gulp) {
   const $ = require('gulp-load-plugins')();
   // Manually add required plugins to $ plugins object.
   $.del = require('del');
+  $.minimist = require('minimist');
+  $.path = require('path');
   $.sassModuleImporter = require('sass-module-importer');
 
   const tasks = [
