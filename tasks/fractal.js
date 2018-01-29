@@ -2,7 +2,7 @@
 
 module.exports = (gulp, $, pkg) => {
   const path = require('path');
-  const fractal = require(path.resolve(pkg.gulpPaths.fractalConfigPath));
+  const fractal = require(path.resolve(pkg.gulpPaths.fractalConfigFilePath));
   // @task: Start Fractal server.
   start: {
     const task = () => {
