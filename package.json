@@ -20,10 +20,10 @@
     "gulp-replace": "^0.6.1",
     "gulp-sass": "~3.1.0",
     "gulp-sass-glob": "^1.0.8",
-    "gulp-sass-glob": "^1.0.8",
     "gulp-sourcemaps": "^2.6.0",
     "gulp-stylelint": "^6.0.0",
     "gulp-uglify-es": "^0.1.4",
+    "minimist": "^1.2.0",
     "sass-module-importer": "^1.4.0",
     "sassdoc": "^2.3.0",
     "stylelint": "^8.4.0",
@@ -40,6 +40,7 @@
     "opera 12"
   ],
   "gulpPaths": {
+    "fractalConfig": "./fractal.config.js",
     "destDir": "./dist",
     "images": {
       "src": "./assets/img/**/*.{jpg,jpeg,png,gif,svg}",
