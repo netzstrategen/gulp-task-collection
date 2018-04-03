@@ -6,7 +6,7 @@
   "main": "index.js",
   "dependencies": {
     "@frctl/fractal": "^1.1.7",
-    "@frctl/twig": "git+ssh://git@github.com:netzstrategen/twig-drupal.git",
+    "@netzstrategen/twig-drupal-fractal-adapter": "^1.0.2",
     "del": "^3.0.0",
     "gulp": "^4.0.0",
     "gulp-autoprefixer": "^4.0.0",
@@ -67,6 +67,5 @@
     "test": "mocha"
   },
   "author": "netzstrategen <hallo@netzstrategen.com>",
-  "homepage": "http://www.netzstrategen.com",
-  "private": true
+  "homepage": "http://www.netzstrategen.com"
 }
