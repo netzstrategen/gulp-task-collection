@@ -3,7 +3,6 @@
 module.exports = function (gulp) {
   const fs = require('fs');
   const path = require('path');
-  const tasksPath = path.join(__dirname, 'tasks');
   const pkg = require(path.resolve('package.json'));
   const $ = require('gulp-load-plugins')();
   // Manually add required plugins to $ plugins object.
@@ -12,16 +11,17 @@ module.exports = function (gulp) {
   $.path = require('path');
   $.sassModuleImporter = require('sass-module-importer');
 
-  const tasks = [
+  let tasks = [
     'clean',
+    typeof(pkg.gulpPaths.fractalConfig) === 'undefined' ? '' : 'fractal',
     'fractal',
     'images',
     'scripts',
     'styles',
-    // Tasks have to come last
     'build',
     'default',
   ];
+  tasks = tasks.filter(Boolean);
   for (let task of tasks) {
     require('./tasks/' + task)(gulp, $, pkg);
   }
