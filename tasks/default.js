@@ -14,11 +14,14 @@ module.exports = (gulp, $, pkg) => {
     callback(); // Required to stop Gulp throwing async competion error.
   };
 
-  // @task: Default. Start Fractal and watch for changes.
-  gulp.task('default', gulp.series(gulp.parallel(
-    'fractal:start',
+  let defaultTasks = [
+    typeof(pkg.gulpPaths.fractalConfig) === 'undefined' ? '' : 'fractal:start',
     'images',
     'styles',
     'scripts'
-  ), watch));
+  ];
+  defaultTasks = defaultTasks.filter(Boolean);
+
+  // @task: Default. Start Fractal and watch for changes.
+  gulp.task('default', gulp.series(gulp.parallel(defaultTasks), watch));
 }

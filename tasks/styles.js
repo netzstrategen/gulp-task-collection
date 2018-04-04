@@ -46,7 +46,6 @@ module.exports = (gulp, $, pkg) => {
       }).on('error', reportError))
       .pipe($.autoprefixer())
       .pipe($.if(options.sourcemaps, $.sourcemaps.write()))
-      .pipe(gulp.dest(pkg.gulpPaths.styles.dest))
       .pipe($.if(options.production, $.replace(copyrightPlaceholder, copyrightNotice)))
       .pipe($.if(options.production, $.cleanCss(cleanCssOptions)))
       .pipe($.if(options.production, $.rename({ suffix: '.min' })))
@@ -55,7 +54,7 @@ module.exports = (gulp, $, pkg) => {
   };
 
   gulp.task('styles', task);
-  gulp.task('styles:build', () => task({
+  gulp.task('styles:production', () => task({
     outputStyle: 'compressed',
     sourcemaps: false,
     production: true,
