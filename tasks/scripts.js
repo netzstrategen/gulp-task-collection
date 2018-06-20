@@ -9,6 +9,9 @@ module.exports = (gulp, $, pkg) => {
     }), args);
     return gulp.src(pkg.gulpPaths.scripts.src)
       .pipe($.plumber())
+      .pipe($.babel({
+        presets: ['env']
+      }))
       .pipe($.if(options.sourcemaps, $.sourcemaps.init()))
       .pipe($.if(options.concat, $.concat(pkg.title.toLowerCase().replace(/[^a-z]/g,'') + '.js')))
       .pipe($.if(options.sourcemaps, $.sourcemaps.write()))
