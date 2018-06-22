@@ -14,7 +14,6 @@ module.exports = function (gulp) {
   let tasks = [
     'clean',
     typeof(pkg.gulpPaths.fractalConfig) === 'undefined' ? '' : 'fractal',
-    'fractal',
     'images',
     'scripts',
     'styles',

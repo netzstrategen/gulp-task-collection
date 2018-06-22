@@ -45,6 +45,7 @@ module.exports = (gulp, $, pkg) => {
         outputStyle: options.outputStyle
       }).on('error', reportError))
       .pipe($.autoprefixer())
+      .pipe($.if(options.novars, $.postcss([cssvariables()])))
       .pipe($.if(options.sourcemaps, $.sourcemaps.write()))
       .pipe($.if(options.production, $.replace(copyrightPlaceholder, copyrightNotice)))
       .pipe($.if(options.production, $.cleanCss(cleanCssOptions)))
@@ -54,6 +55,9 @@ module.exports = (gulp, $, pkg) => {
   };
 
   gulp.task('styles', task);
+  gulp.task('styles:no-vars', () => task({
+    novars: true,
+  }));
   gulp.task('styles:production', () => task({
     outputStyle: 'compressed',
     sourcemaps: false,
