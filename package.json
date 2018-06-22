@@ -26,6 +26,8 @@
     "gulp-stylelint": "^6.0.0",
     "gulp-uglify-es": "^0.1.4",
     "minimist": "^1.2.0",
+    "postcss": "^6.0.23",
+    "postcss-css-variables": "^0.8.1",
     "sass-module-importer": "^1.4.0",
     "sassdoc": "^2.3.0",
     "stylelint": "^8.4.0",
