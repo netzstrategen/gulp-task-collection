@@ -2,6 +2,7 @@
 
 module.exports = (gulp, $, pkg) => {
   const reportError = require('../lib/error.js');
+  const cssvariables = require('postcss-css-variables');
 
   // Copyright notice placed at top of compiled CSS
   const copyrightPlaceholder = '/*! #copyright DO NOT REMOVE# */';
@@ -26,7 +27,7 @@ module.exports = (gulp, $, pkg) => {
   const task = (args) => {
     const options = Object.assign($.minimist(process.argv.slice(2), {
       string: ['outputStyle'],
-      boolean: ['concat', 'sourcemaps', 'production'],
+      boolean: ['concat', 'novars', 'sourcemaps', 'production'],
       default: { concat: true },
     }), args);
     return gulp.src(pkg.gulpPaths.styles.src, { base: pkg.gulpPaths.styles.srcDir })
@@ -49,6 +50,7 @@ module.exports = (gulp, $, pkg) => {
       .pipe($.if(options.sourcemaps, $.sourcemaps.write()))
       .pipe($.if(options.production, $.replace(copyrightPlaceholder, copyrightNotice)))
       .pipe($.if(options.production, $.cleanCss(cleanCssOptions)))
+      .pipe($.if(options.novars, $.rename({ extname: '.no-vars.css' })))
       .pipe($.if(options.production, $.rename({ suffix: '.min' })))
       .pipe(gulp.dest(pkg.gulpPaths.styles.dest))
       .pipe($.livereload());
@@ -56,6 +58,7 @@ module.exports = (gulp, $, pkg) => {
 
   gulp.task('styles', task);
   gulp.task('styles:no-vars', () => task({
+    concat: false,
     novars: true,
   }));
   gulp.task('styles:production', () => task({
