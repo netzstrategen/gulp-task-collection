@@ -1,6 +1,6 @@
 {
   "name": "@netzstrategen/gulp-task-collection",
-  "version": "1.0.3",
+  "version": "1.1.0",
   "title": "Gulp task collection",
   "description": "A collection of gulp tasks.",
   "main": "index.js",
@@ -12,6 +12,7 @@
     "gulp-autoprefixer": "^4.0.0",
     "gulp-clean-css": "^3.7.0",
     "gulp-concat": "^2.6.1",
+    "gulp-eslint": "^5.0.0",
     "gulp-if": "^2.0.2",
     "gulp-imagemin": "^3.1.1",
     "gulp-livereload": "^3.8.1",
