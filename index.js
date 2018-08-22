@@ -9,7 +9,7 @@ module.exports = function (gulp) {
   $.del = require('del');
   $.minimist = require('minimist');
   $.path = require('path');
-  $.sassModuleImporter = require('sass-module-importer');
+  $.magicImporter = require('node-sass-magic-importer');
 
   let tasks = [
     'clean',

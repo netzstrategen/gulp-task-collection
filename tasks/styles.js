@@ -26,8 +26,8 @@ module.exports = (gulp, $, pkg) => {
   const task = (args) => {
     const options = Object.assign($.minimist(process.argv.slice(2), {
       string: ['outputStyle'],
-      boolean: ['concat', 'sourcemaps', 'production'],
-      default: { concat: true },
+      boolean: ['sourcemaps', 'production'],
+      default: { },
     }), args);
     return gulp.src(pkg.gulpPaths.styles.src, { base: pkg.gulpPaths.styles.srcDir })
       .pipe($.plumber())
@@ -38,10 +38,11 @@ module.exports = (gulp, $, pkg) => {
           console: true
         }]
       }))
-      .pipe($.if(options.concat, $.concat(pkg.title.toLowerCase().replace(/[^a-z]/g,'') + '.scss')))
       .pipe($.if(options.sourcemaps, $.sourcemaps.init()))
       .pipe($.sass({
-        importer: $.sassModuleImporter(),
+        importer: $.magicImporter({
+          disableImportOnce: true
+        }),
         outputStyle: options.outputStyle
       }).on('error', reportError))
       .pipe($.autoprefixer())
