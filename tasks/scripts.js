@@ -12,6 +12,7 @@ module.exports = (gulp, $, pkg) => {
       .pipe($.if(options.sourcemaps, $.sourcemaps.init()))
       .pipe($.if(options.concat, $.concat(pkg.title.toLowerCase().replace(/[^a-z]/g,'') + '.js')))
       .pipe($.if(options.sourcemaps, $.sourcemaps.write()))
+      .pipe(gulp.dest(pkg.gulpPaths.scripts.dest))
       .pipe($.if(options.production, $.uglifyEs.default()))
       .pipe($.if(options.production, $.rename({ suffix: '.min' })))
       .pipe(gulp.dest(pkg.gulpPaths.scripts.dest))
