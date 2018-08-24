@@ -1,6 +1,6 @@
 {
   "name": "@netzstrategen/gulp-task-collection",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "title": "Gulp task collection",
   "description": "A collection of gulp tasks.",
   "main": "index.js",
@@ -27,7 +27,7 @@
     "gulp-stylelint": "^6.0.0",
     "gulp-uglify-es": "^0.1.4",
     "minimist": "^1.2.0",
-    "sass-module-importer": "^1.4.0",
+    "node-sass-magic-importer": "^5.2.0",
     "sassdoc": "^2.3.0",
     "stylelint": "^8.4.0",
     "stylelint-order": "^0.8.0",
