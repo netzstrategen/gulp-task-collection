@@ -45,6 +45,10 @@
   "gulpPaths": {
     "fractalConfig": "./fractal.config.js",
     "destDir": "./dist",
+    "fonts": {
+      "src": "./assets/fonts/**/*.{eot,svg,ttf,woff,woff2}",
+      "dest": "./dist/fonts"
+    },
     "images": {
       "src": "./assets/img/**/*.{jpg,jpeg,png,gif,svg}",
       "dest": "./dist/img"
