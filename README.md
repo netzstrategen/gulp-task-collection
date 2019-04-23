@@ -18,14 +18,15 @@ Commonly used Gulp tasks shared across projects.
 
 ## Available commands
 
-- `gulp`: Default task runs (in order) `fractal:start`, `images`, `styles`, `scripts` and then watches for changes
-- `gulp build`: Build assets (`images`, `styles`, `scripts`)
+- `gulp`: Default task runs (in order) `fractal:start`, `fonts`, `images`, `styles`, `scripts` and then watches for changes
+- `gulp build`: Build assets (`fonts`, `images`, `styles`, `scripts`)
 - `gulp build:production`: Build production-ready assets
 
 
 - `gulp clean`: Clean `/dist` folder
 - `gulp styles` and `gulp styles:production`: Sass compilation
 - `gulp scripts` and `gulp scripts:production`: JS compilation
+- `gulp fonts`: Copy fonts to `/dist` folder
 - `gulp images`: Image compression
 - `gulp fractal:start`: Start Fractal server (if config path exists in `package.json`)
 - `gulp fractal:build`: Build static version of Fractal project
