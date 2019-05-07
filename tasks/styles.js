@@ -24,6 +24,7 @@ module.exports = (gulp, $, pkg) => {
 
   // @task: Build Sass styles from components.
   const task = (args) => {
+    const imagehash = require('gulp-css-image-hash');
     const options = Object.assign($.minimist(process.argv.slice(2), {
       string: ['outputStyle'],
       boolean: ['sourcemaps', 'production'],
@@ -45,6 +46,9 @@ module.exports = (gulp, $, pkg) => {
         }),
         outputStyle: options.outputStyle
       }).on('error', reportError))
+      .pipe(function() {
+        return imagehash('./dist/images/', ['png', 'jpg', 'jpeg', 'gif']);
+      })
       .pipe($.autoprefixer())
       .pipe($.if(options.sourcemaps, $.sourcemaps.write()))
       .pipe($.if(options.production, $.replace(copyrightPlaceholder, copyrightNotice)))
