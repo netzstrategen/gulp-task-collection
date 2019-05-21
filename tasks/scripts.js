@@ -11,11 +11,14 @@ module.exports = (gulp, $, pkg) => {
       .pipe($.plumber())
       .pipe($.eslint())
       .pipe($.eslint.format())
-      .pipe($.if(options.sourcemaps, $.sourcemaps.init()))
-      .pipe($.if(options.concat, $.concat(pkg.title.toLowerCase().replace(/[^a-z]/g,'') + '.js')))
-      .pipe($.if(options.sourcemaps, $.sourcemaps.write()))
-      .pipe($.if(options.production, $.uglifyEs.default()))
-      .pipe($.if(options.production, $.rename({ suffix: '.min' })))
+      .pipe($.babel({
+        presets: ['@babel/preset-env']
+      }))
+//      .pipe($.if(options.sourcemaps, $.sourcemaps.init()))
+//      .pipe($.if(options.concat, $.concat(pkg.title.toLowerCase().replace(/[^a-z]/g,'') + '.js')))
+//      .pipe($.if(options.sourcemaps, $.sourcemaps.write()))
+//      .pipe($.if(options.production, $.uglifyEs.default()))
+//      .pipe($.if(options.production, $.rename({ suffix: '.min' })))
       .pipe(gulp.dest(pkg.gulpPaths.scripts.dest))
       .pipe($.livereload());
   };
