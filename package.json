@@ -71,9 +71,6 @@
     },
     "templates": "./templates/**/*.twig"
   },
-  "scripts": {
-    "test": "mocha"
-  },
   "author": "netzstrategen <hallo@netzstrategen.com>",
   "homepage": "http://www.netzstrategen.com"
 }
