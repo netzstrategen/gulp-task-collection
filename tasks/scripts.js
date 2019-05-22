@@ -12,6 +12,9 @@ module.exports = (gulp, $, pkg) => {
       .pipe($.eslint())
       .pipe($.eslint.format())
       .pipe($.if(options.sourcemaps, $.sourcemaps.init()))
+      .pipe($.babel({
+        presets: ['@babel/preset-env']
+      }))
       .pipe($.if(options.concat, $.concat(pkg.title.toLowerCase().replace(/[^a-z]/g,'') + '.js')))
       .pipe($.if(options.sourcemaps, $.sourcemaps.write()))
       .pipe($.if(options.production, $.uglifyEs.default()))
