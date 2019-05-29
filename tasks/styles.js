@@ -47,7 +47,7 @@ module.exports = (gulp, $, pkg) => {
         outputStyle: options.outputStyle
       }).on('error', reportError))
       .pipe(function() {
-        return imagehash('./dist/images/', ['png', 'jpg', 'jpeg', 'gif']);
+        return imagehash('./dist/images/', ['eot', 'gif', 'ico', 'jpg', 'jpeg', 'otf', 'png', 'ttf', 'webp', 'woff', 'woff2']);
       })
       .pipe($.autoprefixer())
       .pipe($.if(options.sourcemaps, $.sourcemaps.write()))
