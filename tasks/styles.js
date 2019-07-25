@@ -47,7 +47,7 @@ module.exports = (gulp, $, pkg) => {
       }).on('error', reportError))
       .pipe($.cssUrlCustomHash({
         targetFileType: ['jpe?g', 'png', 'webp', 'svg', 'gif', 'ico', 'otf', 'ttf', 'eot', 'woff2?'],
-      })))
+      }))
       .pipe($.autoprefixer())
       .pipe($.if(options.sourcemaps, $.sourcemaps.write()))
       .pipe($.if(options.production, $.replace(copyrightPlaceholder, copyrightNotice)))
