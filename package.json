@@ -15,7 +15,7 @@
     "gulp-babel": "^8.0.0",
     "gulp-clean-css": "^3.7.0",
     "gulp-concat": "^2.6.1",
-    "gulp-css-url-custom-hash": "0.0.5",
+    "gulp-css-url-custom-hash": "^0.0.5",
     "gulp-eslint": "^5.0.0",
     "gulp-if": "^2.0.2",
     "gulp-imagemin": "^3.1.1",
