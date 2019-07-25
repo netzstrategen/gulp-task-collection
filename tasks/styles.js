@@ -45,7 +45,7 @@ module.exports = (gulp, $, pkg) => {
         }),
         outputStyle: options.outputStyle
       }).on('error', reportError))
-      .pipe($.if(options.production, $.cssUrlCustomHash({
+      .pipe($.cssUrlCustomHash({
         targetFileType: ['jpe?g', 'png', 'webp', 'svg', 'gif', 'ico', 'otf', 'ttf', 'eot', 'woff2?'],
       })))
       .pipe($.autoprefixer())
