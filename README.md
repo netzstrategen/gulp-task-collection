@@ -31,6 +31,15 @@ Commonly used Gulp tasks shared across projects.
 - `gulp fractal:start`: Start Fractal server (if config path exists in `package.json`)
 - `gulp fractal:build`: Build static version of Fractal project
 
+## Abort on errors
+
+In the default setup, all tasks are continued even if any of the task produces an error. Furthermode, calling `grunt […]` will always exit with code 0.
+To prevent this behavior, an env value can be passed: 
+
+`GULP_ABORT_ON_ERROR=true gulp build`
+
+This will cause gulp to exit on error with an exit code > 0.
+
 ## Authors
 
 - Fabian Marz: [fabian@netzstrategen.com](fabian@netzstrategen.com)
