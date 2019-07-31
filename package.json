@@ -1,8 +1,10 @@
 {
   "name": "@netzstrategen/gulp-task-collection",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "title": "Gulp task collection",
   "description": "A collection of gulp tasks.",
+  "author": "netzstrategen <hallo@netzstrategen.com>",
+  "repository": "netzstrategen/gulp-task-collection",
   "main": "index.js",
   "dependencies": {
     "@babel/core": "^7.4.4",
@@ -71,7 +73,5 @@
       "dest": "./dist/css"
     },
     "templates": "./templates/**/*.twig"
-  },
-  "author": "netzstrategen <hallo@netzstrategen.com>",
-  "homepage": "http://www.netzstrategen.com"
+  }
 }
