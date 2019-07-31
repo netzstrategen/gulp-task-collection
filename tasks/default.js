@@ -5,6 +5,7 @@ module.exports = (gulp, $, pkg) => {
   const watch = (callback) => {
     // Fractal automatically detects existing server instance.
     $.livereload.listen();
+    gulp.watch(pkg.gulpPaths.fonts.src, gulp.series('fonts'));
     gulp.watch(pkg.gulpPaths.images.src, gulp.series('images'));
     gulp.watch(pkg.gulpPaths.styles.src, gulp.series('styles'));
     gulp.watch(pkg.gulpPaths.scripts.src, gulp.series('scripts'));
@@ -16,6 +17,7 @@ module.exports = (gulp, $, pkg) => {
 
   let defaultTasks = [
     typeof(pkg.gulpPaths.fractalConfig) === 'undefined' ? '' : 'fractal:start',
+    'fonts',
     'images',
     'styles',
     'scripts'

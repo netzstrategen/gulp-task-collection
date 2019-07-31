@@ -1,17 +1,24 @@
 {
   "name": "@netzstrategen/gulp-task-collection",
-  "version": "1.0.4",
+  "version": "1.4.2",
   "title": "Gulp task collection",
   "description": "A collection of gulp tasks.",
+  "author": "netzstrategen <hallo@netzstrategen.com>",
+  "repository": "netzstrategen/gulp-task-collection",
   "main": "index.js",
   "dependencies": {
+    "@babel/core": "^7.4.4",
+    "@babel/preset-env": "^7.4.4",
     "@frctl/fractal": "^1.1.7",
     "@netzstrategen/twig-drupal-fractal-adapter": "^1.0.2",
     "del": "^3.0.0",
     "gulp": "^4.0.0",
     "gulp-autoprefixer": "^4.0.0",
+    "gulp-babel": "^8.0.0",
     "gulp-clean-css": "^3.7.0",
     "gulp-concat": "^2.6.1",
+    "gulp-css-url-custom-hash": "^0.0.5",
+    "gulp-eslint": "^5.0.0",
     "gulp-if": "^2.0.2",
     "gulp-imagemin": "^3.1.1",
     "gulp-livereload": "^3.8.1",
@@ -26,7 +33,7 @@
     "gulp-stylelint": "^6.0.0",
     "gulp-uglify-es": "^0.1.4",
     "minimist": "^1.2.0",
-    "sass-module-importer": "^1.4.0",
+    "node-sass-magic-importer": "^5.2.0",
     "sassdoc": "^2.3.0",
     "stylelint": "^8.4.0",
     "stylelint-order": "^0.8.0",
@@ -44,6 +51,10 @@
   "gulpPaths": {
     "fractalConfig": "./fractal.config.js",
     "destDir": "./dist",
+    "fonts": {
+      "src": "./assets/fonts/**/*.{eot,svg,ttf,woff,woff2}",
+      "dest": "./dist/fonts"
+    },
     "images": {
       "src": "./assets/img/**/*.{jpg,jpeg,png,gif,svg}",
       "dest": "./dist/img"
@@ -62,10 +73,5 @@
       "dest": "./dist/css"
     },
     "templates": "./templates/**/*.twig"
-  },
-  "scripts": {
-    "test": "mocha"
-  },
-  "author": "netzstrategen <hallo@netzstrategen.com>",
-  "homepage": "http://www.netzstrategen.com"
+  }
 }
