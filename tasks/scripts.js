@@ -1,7 +1,5 @@
 'use strict';
 
-const noop = require('gulp-noop');
-
 module.exports = (gulp, $, pkg) => {
   // @task: Build JS from components.
   const task = (args = {}) => {
@@ -10,7 +8,7 @@ module.exports = (gulp, $, pkg) => {
       default: { concat: true },
     }), args);
     return gulp.src(pkg.gulpPaths.scripts.src)
-      .pipe(process.env.GULP_ABORT_ON_ERROR ? noop() : $.plumber())
+      .pipe($.if(process.env.GULP_ABORT_ON_ERROR, $.eslint.failAfterError()))
       .pipe($.eslint())
       .pipe($.eslint.format())
       .pipe($.if(options.sourcemaps, $.sourcemaps.init()))

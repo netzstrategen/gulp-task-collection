@@ -1,7 +1,5 @@
 'use strict';
 
-const noop = require('gulp-noop');
-
 module.exports = (gulp, $, pkg) => {
   const reportError = require('../lib/error.js');
 
@@ -32,8 +30,8 @@ module.exports = (gulp, $, pkg) => {
       default: { },
     }), args);
     return gulp.src(pkg.gulpPaths.styles.src, { base: pkg.gulpPaths.styles.srcDir })
-      .pipe(process.env.GULP_ABORT_ON_ERROR ? noop() : $.plumber())
       .pipe($.stylelint({
+        failAfterError: process.env.GULP_ABORT_ON_ERROR,
         syntax: 'scss',
         reporters: [{
           formatter: 'string',
