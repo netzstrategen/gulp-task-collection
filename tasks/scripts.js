@@ -8,6 +8,7 @@ module.exports = (gulp, $, pkg) => {
       default: { concat: true },
     }), args);
     return gulp.src(pkg.gulpPaths.scripts.src)
+      .pipe($.if( ! options['fail-after-error'], $.plumber()))
       .pipe($.eslint())
       .pipe($.eslint.format())
       .pipe($.if(options['fail-after-error'], $.eslint.failAfterError()))
