@@ -33,12 +33,8 @@ Commonly used Gulp tasks shared across projects.
 
 ## Abort on errors
 
-In the default setup, all tasks are continued even if any of the task produces an error. Furthermode, calling `gulp […]` will always exit with code 0.
-To prevent this behavior, an env value can be passed: 
-
-`GULP_ABORT_ON_ERROR=true gulp build`
-
-This will cause gulp to exit on error with an exit code > 0.
+In the default setup, all tasks are continued even if any of the tasks produces an error. Furthermode, calling `gulp […]` will always exit with code 0.
+To prevent this behavior, the flag `--fail-after-error` can be set. This will cause gulp to exit on error with an exit code > 0.
 
 ## Authors
 

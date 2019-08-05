@@ -4,13 +4,13 @@ module.exports = (gulp, $, pkg) => {
   // @task: Build JS from components.
   const task = (args = {}) => {
     const options = Object.assign($.minimist(process.argv.slice(2), {
-      boolean: ['concat', 'sourcemaps', 'production'],
+      boolean: ['concat', 'sourcemaps', 'production', 'fail-after-error'],
       default: { concat: true },
     }), args);
     return gulp.src(pkg.gulpPaths.scripts.src)
-      .pipe($.if(process.env.GULP_ABORT_ON_ERROR, $.eslint.failAfterError()))
       .pipe($.eslint())
       .pipe($.eslint.format())
+      .pipe($.if(options['fail-after-error'], $.eslint.failAfterError()))
       .pipe($.if(options.sourcemaps, $.sourcemaps.init()))
       .pipe($.babel({
         presets: ['@babel/preset-env']
