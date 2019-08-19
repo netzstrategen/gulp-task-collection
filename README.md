@@ -31,10 +31,11 @@ Commonly used Gulp tasks shared across projects.
 - `gulp fractal:start`: Start Fractal server (if config path exists in `package.json`)
 - `gulp fractal:build`: Build static version of Fractal project
 
-## Abort on errors
+## Continuous Integration
 
-In the default setup, all tasks are continued even if one of the tasks produces an error. Furthermore, calling `gulp […]` will always exit with code 0.
-To prevent this behavior, the flag `--fail-after-error` can be set. This will cause gulp to exit on error with an exit code > 0.
+To not break the watch process, all tasks are continued by default, even if one of the tasks produces an error, so gulp will always exit with code 0.
+
+Continuous Integrations and build scripts can use the flag `--fail-after-error` to make gulp exit after an error with an exit code > 0.
 
 ## Authors
 
