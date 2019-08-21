@@ -30,7 +30,7 @@ module.exports = (gulp, $, pkg) => {
       default: { },
     }), args);
     return gulp.src(pkg.gulpPaths.styles.src, { base: pkg.gulpPaths.styles.srcDir })
-      .pipe($.if( ! options['fail-after-error'], $.plumber()))
+      .pipe($.if(!options['fail-after-error'], $.plumber()))
       .pipe($.stylelint({
         failAfterError: options['fail-after-error'],
         syntax: 'scss',
