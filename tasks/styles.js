@@ -26,12 +26,13 @@ module.exports = (gulp, $, pkg) => {
   const task = (args) => {
     const options = Object.assign($.minimist(process.argv.slice(2), {
       string: ['outputStyle'],
-      boolean: ['sourcemaps', 'production'],
+      boolean: ['sourcemaps', 'production', 'fail-after-error'],
       default: { },
     }), args);
     return gulp.src(pkg.gulpPaths.styles.src, { base: pkg.gulpPaths.styles.srcDir })
-      .pipe($.plumber())
+      .pipe($.if(!options['fail-after-error'], $.plumber()))
       .pipe($.stylelint({
+        failAfterError: options['fail-after-error'],
         syntax: 'scss',
         reporters: [{
           formatter: 'string',
