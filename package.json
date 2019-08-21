@@ -1,6 +1,6 @@
 {
   "name": "@netzstrategen/gulp-task-collection",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "title": "Gulp task collection",
   "description": "A collection of gulp tasks.",
   "main": "index.js",
