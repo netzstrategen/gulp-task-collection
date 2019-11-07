@@ -47,7 +47,9 @@ module.exports = (gulp, $, pkg) => {
         }),
         outputStyle: options.outputStyle
       }).on('error', reportError))
-      .pipe($.autoprefixer())
+      .pipe($.autoprefixer({
+        grid: 'autoplace'
+      }))
       .pipe($.if(options.sourcemaps, $.sourcemaps.write()))
       .pipe($.if(options.production, $.replace(copyrightPlaceholder, copyrightNotice)))
       .pipe($.if(options.production, $.cleanCss(cleanCssOptions)))
