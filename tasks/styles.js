@@ -26,10 +26,10 @@ module.exports = (gulp, $, pkg) => {
   const task = (args) => {
     const options = Object.assign($.minimist(process.argv.slice(2), {
       string: ['outputStyle'],
-      boolean: ['sourcemaps', 'production', 'fail-after-error'],
-      default: { },
+      boolean: ['concat', 'sourcemaps', 'production', 'fail-after-error'],
+      default: { concat: true },
     }), args);
-    return gulp.src(pkg.gulpPaths.styles.src, { base: pkg.gulpPaths.styles.srcDir })
+    return gulp.src(pkg.gulpPaths.styles.src)
       .pipe($.if(!options['fail-after-error'], $.plumber()))
       .pipe($.stylelint({
         failAfterError: options['fail-after-error'],
@@ -54,6 +54,8 @@ module.exports = (gulp, $, pkg) => {
       .pipe($.if(options.production, $.replace(copyrightPlaceholder, copyrightNotice)))
       .pipe($.if(options.production, $.cleanCss(cleanCssOptions)))
       .pipe($.if(options.production, $.rename({ suffix: '.min' })))
+      .pipe(gulp.dest(file => file.base))
+      .pipe($.if(options.concat, $.concat(pkg.title.toLowerCase().replace(/[^a-z]/g,'') + '.css')))
       .pipe(gulp.dest(pkg.gulpPaths.styles.dest))
       .pipe($.livereload());
   };
