@@ -46,15 +46,15 @@ module.exports = (gulp, $, pkg) => {
         }),
         outputStyle: options.outputStyle
       }).on('error', reportError))
-      .pipe($.cssUrlCustomHash({
-        targetFileType: ['jpe?g', 'png', 'webp', 'svg', 'gif', 'ico', 'otf', 'ttf', 'eot', 'woff2?'],
-      }))
       .pipe($.autoprefixer())
       .pipe($.if(options.sourcemaps, $.sourcemaps.write()))
       .pipe($.if(options.production, $.replace(copyrightPlaceholder, copyrightNotice)))
       .pipe($.if(options.production, $.cleanCss(cleanCssOptions)))
       .pipe($.if(options.production, $.rename({ suffix: '.min' })))
       .pipe($.if(options.concat, $.concat(pkg.title.toLowerCase().replace(/[^a-z]/g,'') + '.css')))
+      .pipe($.cssUrlCustomHash({
+        targetFileType: ['jpe?g', 'png', 'webp', 'svg', 'gif', 'ico', 'otf', 'ttf', 'eot', 'woff2?'],
+      }))
       .pipe(gulp.dest(pkg.gulpPaths.styles.dest))
       .pipe($.livereload());
   };
