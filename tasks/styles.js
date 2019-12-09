@@ -54,7 +54,6 @@ module.exports = (gulp, $, pkg) => {
       .pipe($.if(options.production, $.replace(copyrightPlaceholder, copyrightNotice)))
       .pipe($.if(options.production, $.cleanCss(cleanCssOptions)))
       .pipe($.if(options.production, $.rename({ suffix: '.min' })))
-      .pipe(gulp.dest(file => file.base))
       .pipe($.if(options.concat, $.concat(pkg.title.toLowerCase().replace(/[^a-z]/g,'') + '.css')))
       .pipe(gulp.dest(pkg.gulpPaths.styles.dest))
       .pipe($.livereload());
