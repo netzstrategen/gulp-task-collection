@@ -1,9 +1,6 @@
 'use strict';
 
 module.exports = (gulp, $, pkg) => {
-
-  const touch = require('gulp-touch-cmd');
-
   // @task: Build JS from components.
   const task = async (args = {}) => {
     if (!pkg.gulpPaths.scripts.src) { return false }
@@ -25,7 +22,7 @@ module.exports = (gulp, $, pkg) => {
       .pipe($.if(options.production, $.uglifyEs.default()))
       .pipe($.if(options.production, $.rename({ suffix: '.min' })))
       .pipe(gulp.dest(pkg.gulpPaths.scripts.dest))
-      .pipe(touch())
+      .pipe($.touchCmd())
       .pipe($.livereload());
   };
 

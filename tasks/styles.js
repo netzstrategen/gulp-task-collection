@@ -22,8 +22,6 @@ module.exports = (gulp, $, pkg) => {
     }
   };
 
-  const touch = require('gulp-touch-cmd');
-
   // @task: Build Sass styles from components.
   const task = async (args) => {
     if (!pkg.gulpPaths.styles.src) { return false }
@@ -59,7 +57,7 @@ module.exports = (gulp, $, pkg) => {
         targetFileType: ['jpe?g', 'png', 'webp', 'svg', 'gif', 'ico', 'otf', 'ttf', 'eot', 'woff2?'],
       }))
       .pipe(gulp.dest(pkg.gulpPaths.styles.dest))
-      .pipe(touch())
+      .pipe($.touchCmd())
       .pipe($.livereload());
   };
 
