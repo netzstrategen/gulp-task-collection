@@ -1,9 +1,6 @@
 'use strict';
 
 module.exports = (gulp, $, pkg) => {
-
-  const touch = require('gulp-touch-cmd');
-
   // @task: Process and minify images.
   const task = () => {
     return gulp.src(pkg.gulpPaths.images.src)
@@ -13,8 +10,8 @@ module.exports = (gulp, $, pkg) => {
         $.imagemin.optipng({ optimizationLevel: 5 }),
         $.imagemin.svgo({ plugins: [{ cleanupIDs: false }] })
       ]))
-      .pipe(gulp.dest(pkg.gulpPaths.images.dest));
-      .pipe(touch());
+      .pipe(gulp.dest(pkg.gulpPaths.images.dest)),
+      .pipe($.touchCmd());
   };
 
   gulp.task('images', task);
