@@ -32,6 +32,7 @@
     "gulp-sass-glob": "^1.0.8",
     "gulp-sourcemaps": "^2.6.0",
     "gulp-stylelint": "^6.0.0",
+    "gulp-touch-cmd": "0.0.1",
     "gulp-uglify-es": "^0.1.4",
     "minimist": "^1.2.0",
     "node-sass-magic-importer": "^5.2.0",
