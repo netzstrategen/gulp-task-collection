@@ -32,6 +32,7 @@
     "gulp-sass-glob": "^1.0.8",
     "gulp-sourcemaps": "^2.6.0",
     "gulp-stylelint": "^6.0.0",
+    "gulp-svg-sprite": "^1.5.0",
     "gulp-uglify-es": "^0.1.4",
     "minimist": "^1.2.0",
     "node-sass-magic-importer": "^5.2.0",
@@ -55,6 +56,11 @@
     "fonts": {
       "src": "./assets/fonts/**/*.{eot,svg,ttf,woff,woff2}",
       "dest": "./dist/fonts"
+    },
+    "icons": {
+      "src": "./assets/icons/**/*.svg",
+      "dest": "./dist/icons",
+      "distFilename": "icons-sprite.svg"
     },
     "images": {
       "src": "./assets/img/**/*.{jpg,jpeg,png,gif,svg}",

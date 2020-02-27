@@ -15,6 +15,7 @@ module.exports = function (gulp) {
     'clean',
     typeof(pkg.gulpPaths.fractalConfig) === 'undefined' ? '' : 'fractal',
     'fonts',
+    'icons',
     'images',
     'scripts',
     'styles',
