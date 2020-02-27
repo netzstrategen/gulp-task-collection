@@ -2,7 +2,8 @@
 
 module.exports = (gulp, $, pkg) => {
   // @task: Process and minify images.
-  const task = () => {
+  const task = async () => {
+    if (!pkg.gulpPaths.images.src) { return false }
     return gulp.src(pkg.gulpPaths.images.src)
       .pipe($.imagemin([
         $.imagemin.gifsicle({ interlaced: true }),
