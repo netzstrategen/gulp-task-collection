@@ -11,7 +11,7 @@ module.exports = (gulp, $, pkg) => {
         $.imagemin.optipng({ optimizationLevel: 5 }),
         $.imagemin.svgo({ plugins: [{ cleanupIDs: false }] })
       ]))
-      .pipe(gulp.dest(pkg.gulpPaths.images.dest)),
+      .pipe(gulp.dest(pkg.gulpPaths.images.dest))
       .pipe($.touchCmd());
   };
 
