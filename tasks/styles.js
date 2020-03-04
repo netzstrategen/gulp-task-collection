@@ -57,6 +57,7 @@ module.exports = (gulp, $, pkg) => {
         targetFileType: ['jpe?g', 'png', 'webp', 'svg', 'gif', 'ico', 'otf', 'ttf', 'eot', 'woff2?'],
       }))
       .pipe(gulp.dest(pkg.gulpPaths.styles.dest))
+      .pipe($.touchCmd())
       .pipe($.livereload());
   };
 

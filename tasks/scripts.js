@@ -22,6 +22,7 @@ module.exports = (gulp, $, pkg) => {
       .pipe($.if(options.production, $.uglifyEs.default()))
       .pipe($.if(options.production, $.rename({ suffix: '.min' })))
       .pipe(gulp.dest(pkg.gulpPaths.scripts.dest))
+      .pipe($.touchCmd())
       .pipe($.livereload());
   };
 
