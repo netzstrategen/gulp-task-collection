@@ -5,7 +5,7 @@ module.exports = (gulp, $, pkg) => {
   const task = async () => {
     if (!pkg.gulpPaths.fonts.src) { return false }
     return gulp.src(pkg.gulpPaths.fonts.src)
-      .pipe(gulp.dest(pkg.gulpPaths.fonts.dest)),
+      .pipe(gulp.dest(pkg.gulpPaths.fonts.dest))
       .pipe($.touchCmd());
   };
 
