@@ -20,12 +20,11 @@ module.exports = (gulp, $, pkg) => {
     typeof(pkg.gulpPaths.fractalConfig) === 'undefined' ? '' : 'fractal:start',
     'fonts',
     'icons',
-    'images',
     'styles',
     'scripts'
   ];
   defaultTasks = defaultTasks.filter(Boolean);
 
   // @task: Default. Start Fractal and watch for changes.
-  gulp.task('default', gulp.series(gulp.parallel(defaultTasks), watch));
+  gulp.task('default', gulp.series('images', gulp.parallel(defaultTasks), watch));
 }
