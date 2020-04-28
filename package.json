@@ -8,8 +8,8 @@
   "repository": "netzstrategen/gulp-task-collection",
   "main": "index.js",
   "dependencies": {
-    "@babel/core": "^7.4.4",
-    "@babel/preset-env": "^7.4.4",
+    "@babel/core": "^7.9.0",
+    "@babel/preset-env": "^7.9.5",
     "@frctl/fractal": "^1.2.1",
     "@netzstrategen/fractal-twig": "^2.2.4",
     "del": "^3.0.0",
