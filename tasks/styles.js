@@ -23,15 +23,17 @@ module.exports = (gulp, $, pkg) => {
   };
 
   // @task: Build Sass styles from components.
-  const task = (args) => {
+  const task = async (args) => {
+    if (!pkg.gulpPaths.styles.src) { return false }
     const options = Object.assign($.minimist(process.argv.slice(2), {
       string: ['outputStyle'],
-      boolean: ['sourcemaps', 'production'],
-      default: { },
+      boolean: ['concat', 'sourcemaps', 'production', 'fail-after-error'],
+      default: { concat: true },
     }), args);
-    return gulp.src(pkg.gulpPaths.styles.src, { base: pkg.gulpPaths.styles.srcDir })
-      .pipe($.plumber())
+    return gulp.src(pkg.gulpPaths.styles.src)
+      .pipe($.if(!options['fail-after-error'], $.plumber()))
       .pipe($.stylelint({
+        failAfterError: options['fail-after-error'],
         syntax: 'scss',
         reporters: [{
           formatter: 'string',
@@ -45,16 +47,20 @@ module.exports = (gulp, $, pkg) => {
         }),
         outputStyle: options.outputStyle
       }).on('error', reportError))
-      .pipe($.cssUrlCustomHash({
-        targetFileType: ['jpe?g', 'png', 'webp', 'svg', 'gif', 'ico', 'otf', 'ttf', 'eot', 'woff2?'],
+      .pipe($.autoprefixer({
+        grid: 'autoplace'
       }))
-      .pipe($.autoprefixer())
       .pipe($.if(options.sourcemaps, $.sourcemaps.write()))
       .pipe($.if(options.production, $.replace(copyrightPlaceholder, copyrightNotice)))
       .pipe(gulp.dest(pkg.gulpPaths.styles.dest))
       .pipe($.if(options.production, $.cleanCss(cleanCssOptions)))
       .pipe($.if(options.production, $.rename({ suffix: '.min' })))
+      .pipe($.if(options.concat, $.concat(pkg.title.toLowerCase().replace(/[^a-z]/g,'') + '.css')))
+      .pipe($.cssUrlCustomHash({
+        targetFileType: ['jpe?g', 'png', 'webp', 'svg', 'gif', 'ico', 'otf', 'ttf', 'eot', 'woff2?'],
+      }))
       .pipe(gulp.dest(pkg.gulpPaths.styles.dest))
+      .pipe($.touchCmd())
       .pipe($.livereload());
   };
 
