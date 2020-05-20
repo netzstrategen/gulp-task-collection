@@ -18,10 +18,10 @@ module.exports = (gulp, $, pkg) => {
 
   let defaultTasks = [
     typeof(pkg.gulpPaths.fractalConfig) === 'undefined' ? '' : 'fractal:start',
-    'fonts',
-    'icons',
-    'styles',
-    'scripts'
+    typeof(pkg.gulpPaths.fonts) === 'undefined' ? '' : 'fonts',
+    typeof(pkg.gulpPaths.icons) === 'undefined' ? '' : 'icons',
+    typeof(pkg.gulpPaths.styles) === 'undefined' ? '' : 'styles',
+    typeof(pkg.gulpPaths.scripts) === 'undefined' ? '' : 'scripts',
   ];
   defaultTasks = defaultTasks.filter(Boolean);
 

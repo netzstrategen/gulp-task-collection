@@ -23,8 +23,7 @@ module.exports = (gulp, $, pkg) => {
   };
 
   // @task: Build Sass styles from components.
-  const task = async (args) => {
-    if (!pkg.gulpPaths.styles.src) { return false }
+  const task = (args) => {
     const options = Object.assign($.minimist(process.argv.slice(2), {
       string: ['outputStyle'],
       boolean: ['concat', 'sourcemaps', 'production', 'fail-after-error'],
