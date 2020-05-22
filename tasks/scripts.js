@@ -2,8 +2,7 @@
 
 module.exports = (gulp, $, pkg) => {
   // @task: Build JS from components.
-  const task = async (args = {}) => {
-    if (!pkg.gulpPaths.scripts.src) { return false }
+  const task = (args = {}) => {
     const options = Object.assign($.minimist(process.argv.slice(2), {
       boolean: ['concat', 'sourcemaps', 'production', 'fail-after-error'],
       default: { concat: true },
