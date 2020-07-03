@@ -55,7 +55,7 @@ module.exports = (gulp, $, pkg) => {
       .pipe($.replace(copyrightPlaceholder, copyrightNotice))
       .pipe($.if(options.concat, $.concat(pkg.title.toLowerCase().replace(/[^a-z]/g,'') + '.css')))
       .pipe($.cssUrlCustomHash({
-        customHash: function(fileName, hash, filePath) {
+        customHash: (fileName, hash, filePath) => {
           return path.basename($.twigAsset.asset(filePath));
         },
         targetFileType: ['jpe?g', 'png', 'webp', 'svg', 'gif', 'ico', 'otf', 'ttf', 'eot', 'woff2?'],
