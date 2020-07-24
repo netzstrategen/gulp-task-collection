@@ -1,5 +1,8 @@
 'use strict';
 
+const createProductionTask = require('../lib/createProductionTask');
+const getOptions = require('@netzstrategen/gulp-task-collection/lib/getOptions');
+
 module.exports = (gulp, $, pkg) => {
   const reportError = require('../lib/error.js');
 
@@ -23,26 +26,10 @@ module.exports = (gulp, $, pkg) => {
     }
   };
 
-  const availableOptions = {
-    boolean: [
-      'concat',
-      'sourcemaps',
-      'fail-after-error',
-      'minify',
-      'copyright',
-    ],
-  };
-
-  const productionDefaults = {
-    minify: true,
-    sourcemaps: false,
-  };
-
   // @task: Build Sass styles from components.
-  const task = async (opts) => {
+  function styleTask(opts) {
     if (!pkg.gulpPaths.styles.src) { return false }
-    const argumentsPassed = $.minimist(process.argv.slice(2), availableOptions);
-    const options = Object.assign(argumentsPassed, opts);
+    const options = getOptions($, opts);
     return gulp.src(pkg.gulpPaths.styles.src)
       .pipe($.if(!options['fail-after-error'], $.plumber()))
       .pipe($.stylelint({
@@ -76,6 +63,6 @@ module.exports = (gulp, $, pkg) => {
       .pipe($.livereload());
   };
 
-  gulp.task('styles', task);
-  gulp.task('styles:production', () => task(productionDefaults));
+  gulp.task('styles', styleTask);
+  gulp.task('styles:production', createProductionTask(styleTask));
 };

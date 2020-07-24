@@ -35,10 +35,10 @@ Commonly used Gulp tasks shared across projects.
 
 ## Options
 
-`--concat` | Combine compiled assets into a single file. Name is derived from the package name.
 `--sourcemaps` | Render sourcemaps. Will be `false` in production builds.
 `--minify` | Render additional minified files, suffixed with `.min`. Will be `true` in production builds.
 `--fail-after-error` | See the 'Continuous Integration' section for details.
+`--no-concat` | By default, assets are compiled into a single file. Use this flag to keep files invididual.
 
 ## Continuous Integration
 
