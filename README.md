@@ -24,7 +24,6 @@ Commonly used Gulp tasks shared across projects.
 - `gulp build`: Build assets (`fonts`, `icons`, `images`, `styles`, `scripts`)
 - `gulp build:production`: Build production-ready assets
 
-
 - `gulp clean`: Clean `/dist` folder
 - `gulp styles` and `gulp styles:production`: Sass compilation
 - `gulp scripts` and `gulp scripts:production`: JS compilation
@@ -33,6 +32,13 @@ Commonly used Gulp tasks shared across projects.
 - `gulp images`: Image compression and inline SVG
 - `gulp fractal:start`: Start Fractal server (if config path exists in `package.json`)
 - `gulp fractal:build`: Build static version of Fractal project
+
+## Options
+
+`--concat` | Combine compiled assets into a single file. Name is derived from the package name.
+`--sourcemaps` | Render sourcemaps. Will be `false` in production builds.
+`--minify` | Render additional minified files, suffixed with `.min`. Will be `true` in production builds.
+`--fail-after-error` | See the 'Continuous Integration' section for details.
 
 ## Continuous Integration
 

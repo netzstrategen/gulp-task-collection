@@ -5,16 +5,17 @@ module.exports = (gulp, $, pkg) => {
 
   // Copyright notice placed at top of compiled CSS
   const copyrightPlaceholder = '/*! #copyright DO NOT REMOVE# */';
-  const copyrightNotice = ['/*!',
-    ' * ' + pkg.title + ' - ' + pkg.description,
-    ' * @version v' + pkg.version,
-    ' * @link ' + pkg.homepage,
-    ' * @author ' + pkg.author,
+  const copyrightNotice = [
+    '/*!',
+    ` * ${pkg.title} - ${pkg.description}`,
+    ` * @version v${pkg.version}`,
+    ` * @link ${pkg.homepage}`,
+    ` * @author ${pkg.author}`,
     ' */',
-    ''].join('\n');
+    '',
+  ].join('\n');
 
-  // Settings for clean-css plugin
-  const cleanCssOptions = {
+  const cleanCssPluginOptions = {
     level: {
       2: {
         all: true,
@@ -22,14 +23,26 @@ module.exports = (gulp, $, pkg) => {
     }
   };
 
+  const availableOptions = {
+    boolean: [
+      'concat',
+      'sourcemaps',
+      'fail-after-error',
+      'minify',
+      'copyright',
+    ],
+  };
+
+  const productionDefaults = {
+    minify: true,
+    sourcemaps: false,
+  };
+
   // @task: Build Sass styles from components.
-  const task = async (args) => {
+  const task = async (opts) => {
     if (!pkg.gulpPaths.styles.src) { return false }
-    const options = Object.assign($.minimist(process.argv.slice(2), {
-      string: ['outputStyle'],
-      boolean: ['concat', 'sourcemaps', 'production', 'fail-after-error'],
-      default: { concat: true },
-    }), args);
+    const argumentsPassed = $.minimist(process.argv.slice(2), availableOptions);
+    const options = Object.assign(argumentsPassed, opts);
     return gulp.src(pkg.gulpPaths.styles.src)
       .pipe($.if(!options['fail-after-error'], $.plumber()))
       .pipe($.stylelint({
@@ -45,29 +58,24 @@ module.exports = (gulp, $, pkg) => {
         importer: $.magicImporter({
           disableImportOnce: true
         }),
-        outputStyle: options.outputStyle
       }).on('error', reportError))
       .pipe($.autoprefixer({
         grid: 'autoplace'
       }))
       .pipe($.if(options.sourcemaps, $.sourcemaps.write()))
-      .pipe($.if(options.production, $.replace(copyrightPlaceholder, copyrightNotice)))
-      .pipe(gulp.dest(pkg.gulpPaths.styles.dest))
-      .pipe($.if(options.production, $.cleanCss(cleanCssOptions)))
-      .pipe($.if(options.production, $.rename({ suffix: '.min' })))
+      .pipe($.replace(copyrightPlaceholder, copyrightNotice))
       .pipe($.if(options.concat, $.concat(pkg.title.toLowerCase().replace(/[^a-z]/g,'') + '.css')))
       .pipe($.cssUrlCustomHash({
         targetFileType: ['jpe?g', 'png', 'webp', 'svg', 'gif', 'ico', 'otf', 'ttf', 'eot', 'woff2?'],
       }))
       .pipe(gulp.dest(pkg.gulpPaths.styles.dest))
+      .pipe($.if(options.minify, $.cleanCss(cleanCssPluginOptions)))
+      .pipe($.if(options.minify, $.rename({ suffix: '.min' })))
+      .pipe($.if(options.minify, gulp.dest(pkg.gulpPaths.styles.dest)))
       .pipe($.touchCmd())
       .pipe($.livereload());
   };
 
   gulp.task('styles', task);
-  gulp.task('styles:production', () => task({
-    outputStyle: 'compressed',
-    sourcemaps: false,
-    production: true,
-  }));
+  gulp.task('styles:production', () => task(productionDefaults));
 };
