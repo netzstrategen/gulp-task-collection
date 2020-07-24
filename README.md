@@ -35,8 +35,8 @@ Commonly used Gulp tasks shared across projects.
 
 ## Options
 
-`--sourcemaps` | Render sourcemaps. Will be `false` in production builds.
 `--minify` | Render additional minified files, suffixed with `.min`. Will be `true` in production builds.
+`--sourcemaps` | Render sourcemaps.
 `--fail-after-error` | See the 'Continuous Integration' section for details.
 `--no-concat` | By default, assets are compiled into a single file. Use this flag to keep files invididual.
 
