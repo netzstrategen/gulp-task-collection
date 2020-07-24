@@ -1,7 +1,7 @@
 'use strict';
 
-const createProductionTask = require('../lib/createProductionTask');
-const getOptions = require('@netzstrategen/gulp-task-collection/lib/getOptions');
+const getOptions = require('../lib/getOptions');
+const registerTaskWithProductionMode = require('../lib/registerTaskWithProductionMode');
 
 module.exports = (gulp, $, pkg) => {
   const reportError = require('../lib/error.js');
@@ -29,7 +29,7 @@ module.exports = (gulp, $, pkg) => {
   // @task: Build Sass styles from components.
   function styleTask(opts) {
     if (!pkg.gulpPaths.styles.src) { return false }
-    const options = getOptions($, opts);
+    const options = getOptions($, pkg.gulpPaths.styles.options, opts);
     return gulp.src(pkg.gulpPaths.styles.src)
       .pipe($.if(!options['fail-after-error'], $.plumber()))
       .pipe($.stylelint({
@@ -63,6 +63,5 @@ module.exports = (gulp, $, pkg) => {
       .pipe($.livereload());
   };
 
-  gulp.task('styles', styleTask);
-  gulp.task('styles:production', createProductionTask(styleTask));
+  registerTaskWithProductionMode(gulp, 'styles', styleTask);
 };

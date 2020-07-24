@@ -1,14 +1,14 @@
 'use strict';
 
 const getOptions = require('../lib/getOptions');
-const createProductionTask = require('../lib/createProductionTask');
+const registerTaskWithProductionMode = require('../lib/registerTaskWithProductionMode');
 
 module.exports = (gulp, $, pkg) => {
 
   // @task: Build JS from components.
   function scriptTask(opts) {
     if (!pkg.gulpPaths.scripts.src) { return false }
-    const options = getOptions($, opts);
+    const options = getOptions($, pkg.gulpPaths.scripts.options, opts);
     return gulp.src(pkg.gulpPaths.scripts.src)
       .pipe($.if(!options['fail-after-error'], $.plumber()))
       .pipe($.eslint())
@@ -28,6 +28,5 @@ module.exports = (gulp, $, pkg) => {
       .pipe($.livereload());
   };
 
-  gulp.task('scripts', scriptTask);
-  gulp.task('scripts:production', createProductionTask(scriptTask));
+  registerTaskWithProductionMode(gulp, 'scripts', scriptTask);
 };

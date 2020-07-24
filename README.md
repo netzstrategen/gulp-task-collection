@@ -33,12 +33,14 @@ Commonly used Gulp tasks shared across projects.
 - `gulp fractal:start`: Start Fractal server (if config path exists in `package.json`)
 - `gulp fractal:build`: Build static version of Fractal project
 
-## Options
+## Options for js/css tasks
 
 `--minify` | Render additional minified files, suffixed with `.min`. Will be `true` in production builds.
 `--sourcemaps` | Render sourcemaps.
 `--fail-after-error` | See the 'Continuous Integration' section for details.
 `--no-concat` | By default, assets are compiled into a single file. Use this flag to keep files invididual.
+
+You can pass an `options` object inside `gulpPaths.scripts`/`gulpPaths.styles` in your `package.json` to set options for each respective task.
 
 ## Continuous Integration
 
