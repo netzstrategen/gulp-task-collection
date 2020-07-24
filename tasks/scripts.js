@@ -23,7 +23,7 @@ module.exports = (gulp, $, pkg) => {
       .pipe(gulp.dest(pkg.gulpPaths.scripts.dest))
       .pipe($.if(options.minify, $.uglifyEs.default()))
       .pipe($.if(options.minify, $.rename({ suffix: '.min' })))
-      .pipe($.if(options.minify,gulp.dest(pkg.gulpPaths.scripts.dest)))
+      .pipe($.if(options.minify, gulp.dest(pkg.gulpPaths.scripts.dest)))
       .pipe($.touchCmd())
       .pipe($.livereload());
   };
