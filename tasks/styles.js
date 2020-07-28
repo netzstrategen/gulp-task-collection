@@ -10,12 +10,13 @@ module.exports = (gulp, $, pkg) => {
   const copyrightPlaceholder = '/*! #copyright DO NOT REMOVE# */';
   const copyrightNotice = [
     '/*!',
+    ' *',
     ` * ${pkg.title} - ${pkg.description}`,
     ` * @version v${pkg.version}`,
     ` * @link ${pkg.homepage}`,
     ` * @author ${pkg.author}`,
+    ' *',
     ' */',
-    '',
   ].join('\n');
 
   const cleanCssPluginOptions = {
