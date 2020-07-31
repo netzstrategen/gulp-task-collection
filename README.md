@@ -40,7 +40,7 @@ Option | Effect
 `--minify` | Additionally generate minified files, suffixed with `.min`. Defaults to `true` in production builds.
 `--sourcemaps` | Render sourcemaps.
 `--fail-after-error` | See section _Continuous Integration_ below for details.
-`--concat` | By default, assets are compiled into individual files. Use this flag to concatenate them into a single js/css file.
+`--concat` | Concatenate CSS/JS asset files into a single aggregate file.
 
 You can pass an `options` object inside `gulpPaths.scripts`/`gulpPaths.styles` in your `package.json` to set options for each respective task.
 
