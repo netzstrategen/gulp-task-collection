@@ -48,7 +48,7 @@ You can pass an `options` object inside `gulpPaths.scripts`/`gulpPaths.styles` i
 
 To not break the watch process, all tasks are continued by default, even if one of the tasks produces an error, so gulp will always exit with code 0.
 
-Continuous Integrations and build scripts can use the flag `--fail-after-error` to make gulp exit after an error with an exit code > 0.
+Continuous Integrations and build scripts can use the flag `--fail-after-error` to make gulp exit after an error with an exit code > 0. By default, `--fail-after-error` is `false` for both dev and production builds.
 
 ## Upgrading to v3
 
