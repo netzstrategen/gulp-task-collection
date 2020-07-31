@@ -33,7 +33,7 @@ Commonly used Gulp tasks shared across projects.
 - `gulp fractal:start`: Start Fractal server (if config path exists in `package.json`)
 - `gulp fractal:build`: Build static version of Fractal project
 
-## Options for js/css tasks
+## `styles` / `scripts` task options
 
 Option | Effect
 :--- | :---
