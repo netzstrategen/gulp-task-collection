@@ -8,15 +8,15 @@
   "repository": "netzstrategen/gulp-task-collection",
   "main": "index.js",
   "dependencies": {
-    "@babel/core": "^7.4.4",
-    "@babel/preset-env": "^7.4.4",
-    "@frctl/fractal": "^1.1.7",
+    "@babel/core": "^7.9.0",
+    "@babel/preset-env": "^7.9.5",
+    "@frctl/fractal": "^1.2.1",
     "@netzstrategen/fractal-twig": "^2.2.4",
     "del": "^3.0.0",
     "gulp": "^4.0.0",
     "gulp-autoprefixer": "^4.0.0",
     "gulp-babel": "^8.0.0",
-    "gulp-clean-css": "^3.7.0",
+    "gulp-clean-css": "^4.3.0",
     "gulp-concat": "^2.6.1",
     "gulp-css-url-custom-hash": "^0.0.5",
     "gulp-eslint": "^5.0.0",
@@ -36,7 +36,7 @@
     "gulp-svg-sprite": "^1.5.0",
     "gulp-touch-cmd": "0.0.1",
     "gulp-uglify-es": "^0.1.4",
-    "minimist": "^1.2.0",
+    "minimist": "^1.2.5",
     "node-sass-magic-importer": "^5.2.0",
     "sassdoc": "^2.3.0",
     "stylelint": "^13.2.0",
@@ -61,6 +61,7 @@
       "distFilename": "icons-sprite.svg"
     },
     "images": {
+      "inlineSvgs": false,
       "src": "./assets/img/**/*.{jpg,jpeg,png,gif,svg}",
       "dest": "./dist/img"
     },

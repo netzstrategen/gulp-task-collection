@@ -2,8 +2,7 @@
 
 module.exports = (gulp, $, pkg) => {
   // @task: Take directory of SVGs and export as sprite ready for inline xlink use.
-  const task = async () => {
-    if (!pkg.gulpPaths.icons.src) { return false }
+  const task = () => {
     return gulp.src(pkg.gulpPaths.icons.src)
       .pipe($.svgSprite({
         mode: {
