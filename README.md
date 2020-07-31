@@ -50,6 +50,14 @@ To not break the watch process, all tasks are continued by default, even if one 
 
 Continuous Integrations and build scripts can use the flag `--fail-after-error` to make gulp exit after an error with an exit code > 0.
 
+## Upgrading to v3
+
+Version 3.0 introduces some changes to the behavior in v2:
+
+- `concat` is now false by default for css and js. v2 was concatenating js, but not css. To keep this behavior, set `gulpPaths.scripts.options.concat: true` inside your project's `package.json`.
+- the `--production` flag is gone. To run a build for production environments, please use the corresponding `styles:production` and `scripts:production` tasks.
+- the `--outputStyle` flag is gone. It has been replaced by `--minify`.
+
 ## Authors
 
 - Fabian Marz: [fabian@netzstrategen.com](fabian@netzstrategen.com)
