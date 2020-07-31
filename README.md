@@ -38,7 +38,7 @@ Commonly used Gulp tasks shared across projects.
 Option | Effect
 :--- | :---
 `--minify` | Additionally generate minified files, suffixed with `.min`. Defaults to `true` in production builds.
-`--sourcemaps` | Render sourcemaps.
+`--sourcemaps` | Add source mappings to compiled files.
 `--fail-after-error` | See section _Continuous Integration_ below for details.
 `--concat` | Concatenate CSS/JS asset files into a single aggregate file.
 
