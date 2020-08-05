@@ -1,12 +1,14 @@
 'use strict';
 
+const getOptions = require('../lib/getOptions');
+const registerTaskWithProductionMode = require('../lib/registerTaskWithProductionMode');
+
 module.exports = (gulp, $, pkg) => {
+
   // @task: Build JS from components.
-  const task = (args = {}) => {
-    const options = Object.assign($.minimist(process.argv.slice(2), {
-      boolean: ['concat', 'sourcemaps', 'production', 'fail-after-error'],
-      default: { concat: true },
-    }), args);
+  function scriptTask(opts) {
+    if (!pkg.gulpPaths.scripts.src) { return false }
+    const options = getOptions($, pkg.gulpPaths.scripts.options, opts);
     return gulp.src(pkg.gulpPaths.scripts.src)
       .pipe($.if(!options['fail-after-error'], $.plumber()))
       .pipe($.eslint())
@@ -18,16 +20,13 @@ module.exports = (gulp, $, pkg) => {
       }))
       .pipe($.if(options.concat, $.concat(pkg.title.toLowerCase().replace(/[^a-z]/g,'') + '.js')))
       .pipe($.if(options.sourcemaps, $.sourcemaps.write()))
-      .pipe($.if(options.production, $.uglifyEs.default()))
-      .pipe($.if(options.production, $.rename({ suffix: '.min' })))
       .pipe(gulp.dest(pkg.gulpPaths.scripts.dest))
+      .pipe($.if(options.minify, $.uglifyEs.default()))
+      .pipe($.if(options.minify, $.rename({ suffix: '.min' })))
+      .pipe($.if(options.minify, gulp.dest(pkg.gulpPaths.scripts.dest)))
       .pipe($.touchCmd())
       .pipe($.livereload());
   };
 
-  gulp.task('scripts', task);
-  gulp.task('scripts:production', () => task({
-    sourcemaps: false,
-    production: true,
-  }));
+  registerTaskWithProductionMode(gulp, 'scripts', scriptTask);
 };
