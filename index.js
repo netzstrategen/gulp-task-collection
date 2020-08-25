@@ -10,6 +10,7 @@ module.exports = function (gulp) {
   $.minimist = require('minimist');
   $.path = require('path');
   $.magicImporter = require('node-sass-magic-importer');
+  $.twigAsset = require('@netzstrategen/twig-asset')();
 
   let tasks = [
     'clean',

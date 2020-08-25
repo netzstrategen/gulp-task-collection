@@ -2,6 +2,7 @@
 
 const getOptions = require('../lib/getOptions');
 const registerTaskWithProductionMode = require('../lib/registerTaskWithProductionMode');
+const path = require('path');
 
 module.exports = (gulp, $, pkg) => {
   const reportError = require('../lib/error.js');
@@ -54,6 +55,9 @@ module.exports = (gulp, $, pkg) => {
       .pipe($.replace(copyrightPlaceholder, copyrightNotice))
       .pipe($.if(options.concat, $.concat(pkg.title.toLowerCase().replace(/[^a-z]/g,'') + '.css')))
       .pipe($.cssUrlCustomHash({
+        customHash: (fileName, hash, filePath) => {
+          return path.basename($.twigAsset.asset(filePath));
+        },
         targetFileType: ['jpe?g', 'png', 'webp', 'svg', 'gif', 'ico', 'otf', 'ttf', 'eot', 'woff2?'],
       }))
       .pipe(gulp.dest(pkg.gulpPaths.styles.dest))
