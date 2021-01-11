@@ -10,9 +10,11 @@ module.exports = (gulp, $, pkg) => {
     gulp.watch(pkg.gulpPaths.images.src, gulp.series('images'));
     gulp.watch(pkg.gulpPaths.styles.src, gulp.series('styles'));
     gulp.watch(pkg.gulpPaths.scripts.src, gulp.series('scripts'));
-    gulp.watch(pkg.gulpPaths.templates, (files) => {
-      $.livereload.changed(files);
-    });
+    if (pkg.gulpPaths.templates) {
+      gulp.watch(pkg.gulpPaths.templates, (files) => {
+        $.livereload.changed(files);
+      });
+    }
     callback(); // Required to stop Gulp throwing async competion error.
   };
 
