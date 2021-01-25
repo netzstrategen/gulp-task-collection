@@ -38,7 +38,7 @@ Commonly used Gulp tasks shared across projects.
 Option | Effect
 :--- | :---
 `--minify` | Additionally generate minified files, suffixed with `.min`. Defaults to `true` in production builds.
-`--sourcemaps` | Add source mappings to compiled files.
+`--sourcemaps` | Add source mappings to compiled files. Defaults to `true` in non-production builds.
 `--fail-after-error` | See section _Continuous Integration_ below for details.
 `--concat` | Concatenate CSS/JS asset files into a single aggregate file.
 
@@ -57,6 +57,7 @@ Version 3.0 introduces some changes to the behavior in v2:
 - `concat` is now false by default for css and js. v2 was concatenating js, but not css. To keep this behavior, set `gulpPaths.scripts.options.concat: true` inside your project's `package.json`.
 - the `--production` flag is gone. To run a build for production environments, please use the corresponding `styles:production` and `scripts:production` tasks.
 - the `--outputStyle` flag is gone. It has been replaced by `--minify`.
+- the option `--sourcemaps` is enabled by default for development / non-production builds.
 
 ## Authors
 

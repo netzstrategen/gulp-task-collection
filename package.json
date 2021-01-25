@@ -1,6 +1,6 @@
 {
   "name": "@netzstrategen/gulp-task-collection",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "title": "Gulp task collection",
   "description": "A collection of gulp tasks.",
   "license": "MIT",
