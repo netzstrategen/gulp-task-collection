@@ -9,7 +9,7 @@ module.exports = (gulp, $, pkg) => {
   function scriptTask(opts) {
     if (!pkg.gulpPaths.scripts.src) { return false }
     const options = getOptions($, pkg.gulpPaths.scripts.options, opts);
-    return gulp.src(pkg.gulpPaths.scripts.src, {sourcemaps: options.sourcemaps})
+    return gulp.src(pkg.gulpPaths.scripts.src, { sourcemaps: options.sourcemaps })
       .pipe($.if(!options['fail-after-error'], $.plumber()))
       .pipe($.eslint())
       .pipe($.eslint.format())
@@ -18,7 +18,7 @@ module.exports = (gulp, $, pkg) => {
         presets: [['@babel/preset-env', { modules: false }]],
       }))
       .pipe($.if(options.concat, $.concat(pkg.title.toLowerCase().replace(/[^a-z]/g,'') + '.js')))
-      .pipe(gulp.dest(pkg.gulpPaths.scripts.dest, {sourcemaps: options.sourcemaps}))
+      .pipe(gulp.dest(pkg.gulpPaths.scripts.dest, { sourcemaps: options.sourcemaps }))
       .pipe($.if(options.minify, $.uglifyEs.default()))
       .pipe($.if(options.minify, $.rename({ suffix: '.min' })))
       .pipe($.if(options.minify, gulp.dest(pkg.gulpPaths.scripts.dest)))

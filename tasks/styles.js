@@ -32,7 +32,7 @@ module.exports = (gulp, $, pkg) => {
   function styleTask(opts) {
     if (!pkg.gulpPaths.styles.src) { return false }
     const options = getOptions($, pkg.gulpPaths.styles.options, opts);
-    return gulp.src(pkg.gulpPaths.styles.src, {sourcemaps: options.sourcemaps})
+    return gulp.src(pkg.gulpPaths.styles.src, { sourcemaps: options.sourcemaps })
       .pipe($.if(!options['fail-after-error'], $.plumber()))
       .pipe($.stylelint({
         failAfterError: options['fail-after-error'],
@@ -58,7 +58,7 @@ module.exports = (gulp, $, pkg) => {
         },
         targetFileType: ['jpe?g', 'png', 'webp', 'svg', 'gif', 'ico', 'otf', 'ttf', 'eot', 'woff2?'],
       }))
-      .pipe(gulp.dest(pkg.gulpPaths.styles.dest, {sourcemaps: options.sourcemaps}))
+      .pipe(gulp.dest(pkg.gulpPaths.styles.dest, { sourcemaps: options.sourcemaps }))
       .pipe($.if(options.minify, $.cleanCss(cleanCssPluginOptions)))
       .pipe($.if(options.minify, $.rename({ suffix: '.min' })))
       .pipe($.if(options.minify, gulp.dest(pkg.gulpPaths.styles.dest)))
