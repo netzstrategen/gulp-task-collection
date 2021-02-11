@@ -1,6 +1,6 @@
 {
   "name": "@netzstrategen/gulp-task-collection",
-  "version": "3.0.1",
+  "version": "3.0.2",
   "title": "Gulp task collection",
   "description": "A collection of gulp tasks.",
   "license": "MIT",
@@ -32,7 +32,6 @@
     "gulp-sass": "~3.1.0",
     "gulp-sass-glob": "^1.0.8",
     "gulp-sassvg": "^4.0.1",
-    "gulp-sourcemaps": "^2.6.0",
     "gulp-stylelint": "^6.0.0",
     "gulp-svg-sprite": "^1.5.0",
     "gulp-touch-cmd": "0.0.1",
