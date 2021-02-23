@@ -22,7 +22,7 @@
     "gulp-css-url-custom-hash": "netzstrategen/gulp-css-url-custom-hash",
     "gulp-eslint": "^5.0.0",
     "gulp-if": "^2.0.2",
-    "gulp-imagemin": "^3.1.1",
+    "gulp-imagemin": "^7.1.0",
     "gulp-livereload": "^4.0.2",
     "gulp-load-plugins": "^1.5.0",
     "gulp-notify": "^2.2.0",
