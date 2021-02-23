@@ -32,7 +32,7 @@ module.exports = (gulp, $, pkg) => {
   function styleTask(opts) {
     if (!pkg.gulpPaths.styles.src) { return false }
     const options = getOptions($, pkg.gulpPaths.styles.options, opts);
-    return gulp.src(pkg.gulpPaths.styles.src)
+    return gulp.src(pkg.gulpPaths.styles.src, { sourcemaps: options.sourcemaps })
       .pipe($.if(!options['fail-after-error'], $.plumber()))
       .pipe($.stylelint({
         failAfterError: options['fail-after-error'],
@@ -42,7 +42,6 @@ module.exports = (gulp, $, pkg) => {
           console: true
         }]
       }))
-      .pipe($.if(options.sourcemaps, $.sourcemaps.init()))
       .pipe($.sass({
         importer: $.magicImporter({
           disableImportOnce: true
@@ -51,7 +50,6 @@ module.exports = (gulp, $, pkg) => {
       .pipe($.autoprefixer({
         grid: 'autoplace'
       }))
-      .pipe($.if(options.sourcemaps, $.sourcemaps.write()))
       .pipe($.replace(copyrightPlaceholder, copyrightNotice))
       .pipe($.if(options.concat, $.concat(pkg.title.toLowerCase().replace(/[^a-z]/g,'') + '.css')))
       .pipe($.cssUrlCustomHash({
@@ -60,7 +58,7 @@ module.exports = (gulp, $, pkg) => {
         },
         targetFileType: ['jpe?g', 'png', 'webp', 'svg', 'gif', 'ico', 'otf', 'ttf', 'eot', 'woff2?'],
       }))
-      .pipe(gulp.dest(pkg.gulpPaths.styles.dest))
+      .pipe(gulp.dest(pkg.gulpPaths.styles.dest, { sourcemaps: options.sourcemaps }))
       .pipe($.if(options.minify, $.cleanCss(cleanCssPluginOptions)))
       .pipe($.if(options.minify, $.rename({ suffix: '.min' })))
       .pipe($.if(options.minify, gulp.dest(pkg.gulpPaths.styles.dest)))
