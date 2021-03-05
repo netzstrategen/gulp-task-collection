@@ -11,7 +11,7 @@
     "@babel/core": "^7.9.0",
     "@babel/preset-env": "^7.9.5",
     "@frctl/fractal": "^1.2.1",
-    "@netzstrategen/fractal-twig": "^2.3.1",
+    "@netzstrategen/fractal-twig": "^2.4.0",
     "@netzstrategen/twig-asset": "^1.0.0",
     "del": "^3.0.0",
     "gulp": "^4.0.2",
