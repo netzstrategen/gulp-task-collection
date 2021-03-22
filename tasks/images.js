@@ -6,7 +6,7 @@ module.exports = (gulp, $, pkg) => {
     return gulp.src(pkg.gulpPaths.images.src)
       .pipe($.imagemin([
         $.imagemin.gifsicle({ interlaced: true }),
-        $.imagemin.jpegtran({ progressive: true }),
+        $.imagemin.mozjpeg({ progressive: true }),
         $.imagemin.optipng({ optimizationLevel: 5 }),
         $.imagemin.svgo({ plugins: [{ cleanupIDs: false }] })
       ]))
