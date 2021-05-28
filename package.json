@@ -1,6 +1,6 @@
 {
   "name": "@netzstrategen/gulp-task-collection",
-  "version": "3.0.3",
+  "version": "3.1.0",
   "title": "Gulp task collection",
   "description": "A collection of gulp tasks.",
   "license": "MIT",
@@ -20,7 +20,7 @@
     "gulp-clean-css": "^4.3.0",
     "gulp-concat": "^2.6.1",
     "gulp-css-url-custom-hash": "netzstrategen/gulp-css-url-custom-hash",
-    "gulp-eslint": "^6.0.0",
+    "gulp-eslint7": "^0.3.1",
     "gulp-if": "^2.0.2",
     "gulp-imagemin": "^7.1.0",
     "gulp-livereload": "^4.0.2",
