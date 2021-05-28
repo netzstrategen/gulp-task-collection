@@ -5,14 +5,24 @@ module.exports = (gulp, $, pkg) => {
   const watch = (callback) => {
     // Fractal automatically detects existing server instance.
     $.livereload.listen();
-    gulp.watch(pkg.gulpPaths.fonts.src, gulp.series('fonts'));
-    gulp.watch(pkg.gulpPaths.icons.src, gulp.series('icons'));
-    gulp.watch(pkg.gulpPaths.images.src, gulp.series('images'));
-    gulp.watch(pkg.gulpPaths.styles.src, gulp.series('styles'));
-    gulp.watch(pkg.gulpPaths.scripts.src, gulp.series('scripts'));
-    gulp.watch(pkg.gulpPaths.templates, (files) => {
-      $.livereload.changed(files);
+    const tasks = [
+     'fonts',
+     'icons',
+     'images',
+     'styles',
+     'scripts',
+    ];
+    tasks.forEach((task) => {
+      const path = pkg.gulpPaths?.[task]?.src;
+      if (path) {
+        gulp.watch(path, gulp.series(task));
+      }
     });
+    if (pkg.gulpPaths?.templates) {
+      gulp.watch(pkg.gulpPaths.templates, (files) => {
+        $.livereload.changed(files);
+      });
+    }
     callback(); // Required to stop Gulp throwing async competion error.
   };
 

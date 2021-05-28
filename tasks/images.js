@@ -2,7 +2,8 @@
 
 module.exports = (gulp, $, pkg) => {
   // @task: Process and minify images.
-  const minify = () => {
+  const minify = async () => {
+    if (!pkg.gulpPaths?.images?.src) { return false }
     return gulp.src(pkg.gulpPaths.images.src)
       .pipe($.imagemin([
         $.imagemin.gifsicle({ interlaced: true }),
@@ -15,7 +16,7 @@ module.exports = (gulp, $, pkg) => {
   };
 
   const inlineSvg = async () => {
-    if (!pkg.gulpPaths.images.inlineSvgs === true) { return false }
+    if (!pkg.gulpPaths?.images?.inlineSvgs === true) { return false }
     return gulp.src(pkg.gulpPaths.images.dest + '/**/*.svg')
       .pipe($.sassvg({
         outputFolder: pkg.gulpPaths.styles.srcDir + '/vendor'
