@@ -9,7 +9,7 @@ module.exports = (gulp, $, pkg) => {
         $.imagemin.gifsicle({ interlaced: true }),
         $.imagemin.mozjpeg({ progressive: true }),
         $.imagemin.optipng({ optimizationLevel: 5 }),
-        $.imagemin.svgo({ plugins: [{ cleanupIDs: false }] })
+        $.imagemin.svgo({ plugins: [{ cleanupIDs: false }, { removeViewBox: false }] })
       ]))
       .pipe(gulp.dest(pkg.gulpPaths.images.dest))
       .pipe($.touchCmd());
