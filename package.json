@@ -44,7 +44,7 @@
   },
   "devDependencies": {
     "@frctl/fractal": "^1.2.1",
-    "@netzstrategen/fractal-twig": "^2.4.0",
+    "@netzstrategen/fractal-twig": "^2.4.0"
   },
   "browserslist": [
     "last 2 versions",
