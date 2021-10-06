@@ -32,16 +32,17 @@ module.exports = (gulp, $, pkg) => {
   function styleTask(opts) {
     if (!pkg.gulpPaths.styles.src) { return false }
     const options = getOptions($, pkg.gulpPaths.styles.options, opts);
+    const isProduction = options._[0]?.indexOf('production');
     return gulp.src(pkg.gulpPaths.styles.src, { sourcemaps: options.sourcemaps })
       .pipe($.if(!options['fail-after-error'], $.plumber()))
-      .pipe($.stylelint({
+      .pipe($.if(!isProduction, $.stylelint({
         failAfterError: options['fail-after-error'],
         syntax: 'scss',
         reporters: [{
           formatter: 'string',
           console: true
         }]
-      }))
+      })))
       .pipe($.sass({
         importer: $.magicImporter({
           disableImportOnce: true
