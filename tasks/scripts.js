@@ -9,11 +9,12 @@ module.exports = (gulp, $, pkg) => {
   function scriptTask(opts) {
     if (!pkg.gulpPaths.scripts.src) { return false }
     const options = getOptions($, pkg.gulpPaths.scripts.options, opts);
+    const isProduction = options._[0]?.indexOf('production');
     return gulp.src(pkg.gulpPaths.scripts.src, { sourcemaps: options.sourcemaps })
       .pipe($.if(!options['fail-after-error'], $.plumber()))
-      .pipe($.eslint())
-      .pipe($.eslint.format())
-      .pipe($.if(options['fail-after-error'], $.eslint.failAfterError()))
+      .pipe($.if(!isProduction, $.eslint()))
+      .pipe($.if(!isProduction, $.eslint.format()))
+      .pipe($.if(!isProduction && options['fail-after-error'], $.eslint.failAfterError()))
       .pipe($.babel({
         presets: [['@babel/preset-env', { modules: false }]],
       }))
