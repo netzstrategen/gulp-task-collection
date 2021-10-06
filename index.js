@@ -7,7 +7,6 @@ module.exports = function (gulp) {
   const $ = require('gulp-load-plugins')();
   // Manually add required plugins to $ plugins object.
   $.del = require('del');
-  $.eslint = require('gulp-eslint7');
   $.minimist = require('minimist');
   $.path = require('path');
   $.magicImporter = require('node-sass-magic-importer');
