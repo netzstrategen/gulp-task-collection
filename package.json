@@ -37,7 +37,7 @@
   },
   "devDependencies": {
     "@frctl/fractal": "^1.2.1",
-    "@netzstrategen/fractal-twig": "^2.4.0"
+    "@netzstrategen/fractal-twig": "^2.4.0",
     "gulp-eslint7": "^0.3.1",
     "gulp-livereload": "^4.0.2",
     "gulp-stylelint": "^13.0.0",
