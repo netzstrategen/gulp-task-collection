@@ -10,8 +10,6 @@
   "dependencies": {
     "@babel/core": "^7.9.0",
     "@babel/preset-env": "^7.9.5",
-    "@frctl/fractal": "^1.2.1",
-    "@netzstrategen/fractal-twig": "^2.4.0",
     "@netzstrategen/twig-asset": "^1.0.0",
     "del": "^3.0.0",
     "gulp": "^4.0.2",
@@ -43,6 +41,10 @@
     "stylelint-order": "^4.1.0",
     "stylelint-scss": "^3.19.0",
     "stylelint-selector-bem-pattern": "^2.0.0"
+  },
+  "devDependencies": {
+    "@frctl/fractal": "^1.2.1",
+    "@netzstrategen/fractal-twig": "^2.4.0",
   },
   "browserslist": [
     "last 2 versions",
