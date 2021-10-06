@@ -33,16 +33,21 @@ module.exports = (gulp, $, pkg) => {
     if (!pkg.gulpPaths.styles.src) { return false }
     const options = getOptions($, pkg.gulpPaths.styles.options, opts);
     const isProduction = options._[0]?.indexOf('production');
-    return gulp.src(pkg.gulpPaths.styles.src, { sourcemaps: options.sourcemaps })
-      .pipe($.if(!options['fail-after-error'], $.plumber()))
-      .pipe($.if(!isProduction, $.stylelint({
+
+    let stream = gulp.src(pkg.gulpPaths.styles.src, { sourcemaps: options.sourcemaps })
+      .pipe($.if(!options['fail-after-error'], $.plumber()));
+    
+    if (!isProduction) {
+      stream = stream.pipe($.stylelint({
         failAfterError: options['fail-after-error'],
         syntax: 'scss',
         reporters: [{
           formatter: 'string',
           console: true
         }]
-      })))
+      }));
+    }
+    stream
       .pipe($.sass({
         importer: $.magicImporter({
           disableImportOnce: true
@@ -63,8 +68,12 @@ module.exports = (gulp, $, pkg) => {
       .pipe($.if(options.minify, $.cleanCss(cleanCssPluginOptions)))
       .pipe($.if(options.minify, $.rename({ suffix: '.min' })))
       .pipe($.if(options.minify, gulp.dest(pkg.gulpPaths.styles.dest)))
-      .pipe($.touchCmd())
-      .pipe($.livereload());
+      .pipe($.touchCmd());
+    
+    if (!isProduction) {
+      stream = stream.pipe($.livereload());
+    }
+    return stream;
   };
 
   registerTaskWithProductionMode(gulp, 'styles', styleTask);
