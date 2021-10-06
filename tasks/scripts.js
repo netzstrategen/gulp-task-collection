@@ -10,11 +10,17 @@ module.exports = (gulp, $, pkg) => {
     if (!pkg.gulpPaths.scripts.src) { return false }
     const options = getOptions($, pkg.gulpPaths.scripts.options, opts);
     const isProduction = options._[0]?.indexOf('production');
-    return gulp.src(pkg.gulpPaths.scripts.src, { sourcemaps: options.sourcemaps })
-      .pipe($.if(!options['fail-after-error'], $.plumber()))
-      .pipe($.if(!isProduction, $.eslint()))
-      .pipe($.if(!isProduction, $.eslint.format()))
-      .pipe($.if(!isProduction && options['fail-after-error'], $.eslint.failAfterError()))
+
+    let stream = gulp.src(pkg.gulpPaths.scripts.src, { sourcemaps: options.sourcemaps })
+      .pipe($.if(!options['fail-after-error'], $.plumber()));
+
+    if (!isProduction) {
+      stream = stream
+        .pipe($.eslint())
+        .pipe($.eslint.format())
+        .pipe($.if(options['fail-after-error'], $.eslint.failAfterError()));
+    }
+    stream
       .pipe($.babel({
         presets: [['@babel/preset-env', { modules: false }]],
       }))
@@ -23,8 +29,12 @@ module.exports = (gulp, $, pkg) => {
       .pipe($.if(options.minify, $.uglifyEs.default()))
       .pipe($.if(options.minify, $.rename({ suffix: '.min' })))
       .pipe($.if(options.minify, gulp.dest(pkg.gulpPaths.scripts.dest)))
-      .pipe($.touchCmd())
-      .pipe($.livereload());
+      .pipe($.touchCmd());
+
+    if (!isProduction) {
+      stream = stream.pipe($.livereload());
+    }
+    return stream;
   };
 
   registerTaskWithProductionMode(gulp, 'scripts', scriptTask);
