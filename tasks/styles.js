@@ -32,22 +32,9 @@ module.exports = (gulp, $, pkg) => {
   function styleTask(opts) {
     if (!pkg.gulpPaths.styles.src) { return false }
     const options = getOptions($, pkg.gulpPaths.styles.options, opts);
-    const isProduction = options._[0]?.indexOf('production') > -1;
 
     let stream = gulp.src(pkg.gulpPaths.styles.src, { sourcemaps: options.sourcemaps })
       .pipe($.if(!options['fail-after-error'], $.plumber()));
-    
-    if (!isProduction) {
-      stream = stream.pipe($.stylelint({
-        failAfterError: options['fail-after-error'],
-        syntax: 'scss',
-        reporters: [{
-          formatter: 'string',
-          console: true
-        }]
-      }));
-    }
-    stream = stream
       .pipe($.sass({
         importer: $.magicImporter({
           disableImportOnce: true
@@ -70,9 +57,6 @@ module.exports = (gulp, $, pkg) => {
       .pipe($.if(options.minify, gulp.dest(pkg.gulpPaths.styles.dest)))
       .pipe($.touchCmd());
     
-    if (!isProduction) {
-      stream = stream.pipe($.livereload());
-    }
     return stream;
   };
 
