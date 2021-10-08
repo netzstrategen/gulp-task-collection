@@ -3,6 +3,7 @@
 const getOptions = require('../lib/getOptions');
 const registerTaskWithProductionMode = require('../lib/registerTaskWithProductionMode');
 const path = require('path');
+const lazypipe = require('lazypipe');
 
 module.exports = (gulp, $, pkg) => {
   const reportError = require('../lib/error.js');
@@ -32,7 +33,7 @@ module.exports = (gulp, $, pkg) => {
   function styleTask(opts) {
     if (!pkg.gulpPaths.styles.src) { return false }
     const options = getOptions($, pkg.gulpPaths.styles.options, opts);
-    const isProduction = options._[0]?.indexOf('production');
+    const isProduction = options._[0]?.indexOf('production') > -1;
 
     let stream = gulp.src(pkg.gulpPaths.styles.src, { sourcemaps: options.sourcemaps })
       .pipe($.if(!options['fail-after-error'], $.plumber()));
@@ -60,7 +61,7 @@ module.exports = (gulp, $, pkg) => {
       .pipe($.if(options.concat, $.concat(pkg.title.toLowerCase().replace(/[^a-z]/g,'') + '.css')))
       .pipe($.cssUrlCustomHash({
         customHash: (fileName, hash, filePath) => {
-          return path.basename($.twigAsset.asset(filePath));
+         return path.basename($.twigAsset.asset(filePath));
         },
         targetFileType: ['jpe?g', 'png', 'webp', 'svg', 'gif', 'ico', 'otf', 'ttf', 'eot', 'woff2?'],
       }))

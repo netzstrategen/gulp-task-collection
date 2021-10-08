@@ -4,13 +4,21 @@ module.exports = function (gulp) {
   const fs = require('fs');
   const path = require('path');
   const pkg = require(path.resolve('package.json'));
-  const $ = require('gulp-load-plugins')();
-  // Manually add required plugins to $ plugins object.
-  $.del = require('del');
-  $.minimist = require('minimist');
-  $.path = require('path');
-  $.magicImporter = require('node-sass-magic-importer');
-  $.twigAsset = require('@netzstrategen/twig-asset')();
+  const $ = require('gulp-load-plugins')({
+    overridePattern: false,
+    pattern: [
+      'del',
+      'minimist',
+      'path',
+      'node-sass-magic-importer',
+      '*/twig-asset'
+    ],
+    rename: {
+      'gulp-eslint7': 'eslint',
+      'node-sass-magic-importer': 'magicImporter',
+      '@netzstrategen/twig-asset': 'twigAsset'
+    }
+  });
 
   let tasks = [
     'clean',
