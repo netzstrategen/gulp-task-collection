@@ -47,7 +47,7 @@ module.exports = (gulp, $, pkg) => {
         }]
       }));
     }
-    stream
+    stream = stream
       .pipe($.sass({
         importer: $.magicImporter({
           disableImportOnce: true

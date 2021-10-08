@@ -20,7 +20,7 @@ module.exports = (gulp, $, pkg) => {
         .pipe($.eslint.format())
         .pipe($.if(options['fail-after-error'], $.eslint.failAfterError()));
     }
-    stream
+    stream = stream
       .pipe($.babel({
         presets: [['@babel/preset-env', { modules: false }]],
       }))
