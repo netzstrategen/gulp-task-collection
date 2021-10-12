@@ -5,13 +5,14 @@ module.exports = function (gulp) {
   const path = require('path');
   const pkg = require(path.resolve('package.json'));
   const $ = require('gulp-load-plugins')({
+    maintainScope: false,
     overridePattern: false,
     pattern: [
       'del',
       'minimist',
       'path',
       'node-sass-magic-importer',
-      '*/twig-asset'
+      '@netzstrategen/twig-asset'
     ],
     rename: {
       'node-sass-magic-importer': 'magicImporter',
