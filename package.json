@@ -59,7 +59,6 @@
       "src": "./components/**/*.js",
       "dest": "./dist/js"
     },
-    "styleguide": "styleguide",
     "styles": {
       "srcDir": "./assets/scss",
       "src": [
