@@ -1,6 +1,6 @@
 {
   "name": "@netzstrategen/gulp-task-collection",
-  "version": "3.1.2",
+  "version": "4.0.0",
   "title": "Gulp task collection",
   "description": "A collection of gulp tasks.",
   "license": "MIT",
@@ -10,8 +10,6 @@
   "dependencies": {
     "@babel/core": "^7.9.0",
     "@babel/preset-env": "^7.9.5",
-    "@frctl/fractal": "^1.2.1",
-    "@netzstrategen/fractal-twig": "^2.4.0",
     "@netzstrategen/twig-asset": "^1.0.0",
     "del": "^3.0.0",
     "gulp": "^4.0.2",
@@ -20,10 +18,8 @@
     "gulp-clean-css": "^4.3.0",
     "gulp-concat": "^2.6.1",
     "gulp-css-url-custom-hash": "https://github.com/netzstrategen/gulp-css-url-custom-hash.git",
-    "gulp-eslint7": "^0.3.1",
     "gulp-if": "^2.0.2",
     "gulp-imagemin": "^7.1.0",
-    "gulp-livereload": "^4.0.2",
     "gulp-load-plugins": "^2.0.6",
     "gulp-notify": "^2.2.0",
     "gulp-plumber": "^1.2.1",
@@ -32,24 +28,18 @@
     "gulp-sass": "~3.1.0",
     "gulp-sass-glob": "^1.0.8",
     "gulp-sassvg": "^4.0.1",
-    "gulp-stylelint": "^13.0.0",
     "gulp-svg-sprite": "^1.5.0",
     "gulp-touch-cmd": "0.0.1",
     "gulp-uglify-es": "^0.1.4",
     "minimist": "^1.2.5",
     "node-sass-magic-importer": "^5.2.0",
-    "sassdoc": "^2.3.0",
-    "stylelint": "^13.11.0",
-    "stylelint-order": "^4.1.0",
-    "stylelint-scss": "^3.19.0",
-    "stylelint-selector-bem-pattern": "^2.0.0"
+    "sassdoc": "^2.3.0"
   },
   "browserslist": [
     "last 2 versions",
     "ie 11"
   ],
   "gulpPaths": {
-    "fractalConfig": "./fractal.config.js",
     "destDir": "./dist",
     "fonts": {
       "src": "./assets/fonts/**/*.{eot,svg,ttf,woff,woff2}",
@@ -69,7 +59,6 @@
       "src": "./components/**/*.js",
       "dest": "./dist/js"
     },
-    "styleguide": "styleguide",
     "styles": {
       "srcDir": "./assets/scss",
       "src": [

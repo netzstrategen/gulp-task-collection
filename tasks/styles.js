@@ -32,16 +32,9 @@ module.exports = (gulp, $, pkg) => {
   function styleTask(opts) {
     if (!pkg.gulpPaths.styles.src) { return false }
     const options = getOptions($, pkg.gulpPaths.styles.options, opts);
-    return gulp.src(pkg.gulpPaths.styles.src, { sourcemaps: options.sourcemaps })
+
+    let stream = gulp.src(pkg.gulpPaths.styles.src, { sourcemaps: options.sourcemaps })
       .pipe($.if(!options['fail-after-error'], $.plumber()))
-      .pipe($.stylelint({
-        failAfterError: options['fail-after-error'],
-        syntax: 'scss',
-        reporters: [{
-          formatter: 'string',
-          console: true
-        }]
-      }))
       .pipe($.sass({
         importer: $.magicImporter({
           disableImportOnce: true
@@ -54,7 +47,7 @@ module.exports = (gulp, $, pkg) => {
       .pipe($.if(options.concat, $.concat(pkg.title.toLowerCase().replace(/[^a-z]/g,'') + '.css')))
       .pipe($.cssUrlCustomHash({
         customHash: (fileName, hash, filePath) => {
-          return path.basename($.twigAsset.asset(filePath));
+          return path.basename($.twigAsset().asset(filePath));
         },
         targetFileType: ['jpe?g', 'png', 'webp', 'svg', 'gif', 'ico', 'otf', 'ttf', 'eot', 'woff2?'],
       }))
@@ -62,8 +55,9 @@ module.exports = (gulp, $, pkg) => {
       .pipe($.if(options.minify, $.cleanCss(cleanCssPluginOptions)))
       .pipe($.if(options.minify, $.rename({ suffix: '.min' })))
       .pipe($.if(options.minify, gulp.dest(pkg.gulpPaths.styles.dest)))
-      .pipe($.touchCmd())
-      .pipe($.livereload());
+      .pipe($.touchCmd());
+    
+    return stream;
   };
 
   registerTaskWithProductionMode(gulp, 'styles', styleTask);

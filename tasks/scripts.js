@@ -9,11 +9,9 @@ module.exports = (gulp, $, pkg) => {
   function scriptTask(opts) {
     if (!pkg.gulpPaths.scripts.src) { return false }
     const options = getOptions($, pkg.gulpPaths.scripts.options, opts);
-    return gulp.src(pkg.gulpPaths.scripts.src, { sourcemaps: options.sourcemaps })
+
+    let stream = gulp.src(pkg.gulpPaths.scripts.src, { sourcemaps: options.sourcemaps })
       .pipe($.if(!options['fail-after-error'], $.plumber()))
-      .pipe($.eslint())
-      .pipe($.eslint.format())
-      .pipe($.if(options['fail-after-error'], $.eslint.failAfterError()))
       .pipe($.babel({
         presets: [['@babel/preset-env', { modules: false }]],
       }))
@@ -22,8 +20,9 @@ module.exports = (gulp, $, pkg) => {
       .pipe($.if(options.minify, $.uglifyEs.default()))
       .pipe($.if(options.minify, $.rename({ suffix: '.min' })))
       .pipe($.if(options.minify, gulp.dest(pkg.gulpPaths.scripts.dest)))
-      .pipe($.touchCmd())
-      .pipe($.livereload());
+      .pipe($.touchCmd());
+
+    return stream;
   };
 
   registerTaskWithProductionMode(gulp, 'scripts', scriptTask);

@@ -3,8 +3,6 @@
 module.exports = (gulp, $, pkg) => {
   // @task: Watch files for changes and reload.
   const watch = (callback) => {
-    // Fractal automatically detects existing server instance.
-    $.livereload.listen();
     const tasks = [
      'fonts',
      'icons',
@@ -19,15 +17,12 @@ module.exports = (gulp, $, pkg) => {
       }
     });
     if (pkg.gulpPaths?.templates) {
-      gulp.watch(pkg.gulpPaths.templates, (files) => {
-        $.livereload.changed(files);
-      });
+      gulp.watch(pkg.gulpPaths.templates);
     }
     callback(); // Required to stop Gulp throwing async competion error.
   };
 
   let defaultTasks = [
-    typeof(pkg.gulpPaths.fractalConfig) === 'undefined' ? '' : 'fractal:start',
     typeof(pkg.gulpPaths.fonts) === 'undefined' ? '' : 'fonts',
     typeof(pkg.gulpPaths.icons) === 'undefined' ? '' : 'icons',
     typeof(pkg.gulpPaths.styles) === 'undefined' ? '' : 'styles',
@@ -35,6 +30,6 @@ module.exports = (gulp, $, pkg) => {
   ];
   defaultTasks = defaultTasks.filter(Boolean);
 
-  // @task: Default. Start Fractal and watch for changes.
+  // @task: Default. Build and watch for changes.
   gulp.task('default', gulp.series('images', gulp.parallel(defaultTasks), watch));
 }
