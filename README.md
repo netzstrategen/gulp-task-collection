@@ -10,7 +10,6 @@ Commonly used Gulp tasks shared across projects.
 - Image compression
 - SVG icon sprite generation
 - Inline SVG files
-- Fractal server and build
 
 ## Installation
 
@@ -20,7 +19,7 @@ Commonly used Gulp tasks shared across projects.
 
 ## Available commands
 
-- `gulp`: Default task runs (in order) `fractal:start`, `fonts`, `icons`, `images`, `styles`, `scripts` and then watches for changes
+- `gulp`: Default task runs (in order) `fonts`, `icons`, `images`, `styles`, `scripts` and then watches for changes
 - `gulp build`: Build assets (`fonts`, `icons`, `images`, `styles`, `scripts`)
 - `gulp build:production`: Build production-ready assets
 
@@ -30,8 +29,6 @@ Commonly used Gulp tasks shared across projects.
 - `gulp fonts`: Copy fonts to `/dist` folder
 - `gulp icons`: Generate SVG icon sprite from folder of individual SVG icons
 - `gulp images`: Image compression and inline SVG
-- `gulp fractal:start`: Start Fractal server (if config path exists in `package.json`)
-- `gulp fractal:build`: Build static version of Fractal project
 
 ## `styles` / `scripts` task options
 

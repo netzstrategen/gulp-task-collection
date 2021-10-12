@@ -14,7 +14,6 @@ module.exports = function (gulp) {
       '*/twig-asset'
     ],
     rename: {
-      'gulp-eslint7': 'eslint',
       'node-sass-magic-importer': 'magicImporter',
       '@netzstrategen/twig-asset': 'twigAsset'
     }
@@ -22,7 +21,6 @@ module.exports = function (gulp) {
 
   let tasks = [
     'clean',
-    typeof(pkg.gulpPaths.fractalConfig) === 'undefined' ? '' : 'fractal',
     'fonts',
     'icons',
     'images',

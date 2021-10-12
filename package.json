@@ -35,16 +35,11 @@
     "node-sass-magic-importer": "^5.2.0",
     "sassdoc": "^2.3.0"
   },
-  "devDependencies": {
-    "@frctl/fractal": "^1.2.1",
-    "@netzstrategen/fractal-twig": "^2.4.0"
-  },
   "browserslist": [
     "last 2 versions",
     "ie 11"
   ],
   "gulpPaths": {
-    "fractalConfig": "./fractal.config.js",
     "destDir": "./dist",
     "fonts": {
       "src": "./assets/fonts/**/*.{eot,svg,ttf,woff,woff2}",
