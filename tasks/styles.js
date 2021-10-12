@@ -34,7 +34,7 @@ module.exports = (gulp, $, pkg) => {
     const options = getOptions($, pkg.gulpPaths.styles.options, opts);
 
     let stream = gulp.src(pkg.gulpPaths.styles.src, { sourcemaps: options.sourcemaps })
-      .pipe($.if(!options['fail-after-error'], $.plumber()));
+      .pipe($.if(!options['fail-after-error'], $.plumber()))
       .pipe($.sass({
         importer: $.magicImporter({
           disableImportOnce: true

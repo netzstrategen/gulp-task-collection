@@ -11,7 +11,7 @@ module.exports = (gulp, $, pkg) => {
     const options = getOptions($, pkg.gulpPaths.scripts.options, opts);
 
     let stream = gulp.src(pkg.gulpPaths.scripts.src, { sourcemaps: options.sourcemaps })
-      .pipe($.if(!options['fail-after-error'], $.plumber()));
+      .pipe($.if(!options['fail-after-error'], $.plumber()))
       .pipe($.babel({
         presets: [['@babel/preset-env', { modules: false }]],
       }))
