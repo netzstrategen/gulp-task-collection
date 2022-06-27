@@ -8,15 +8,20 @@ module.exports = function (gulp) {
     maintainScope: false,
     overridePattern: false,
     pattern: [
+      '@netzstrategen/twig-asset',
       'del',
       'minimist',
-      'path',
       'node-sass-magic-importer',
-      '@netzstrategen/twig-asset'
+      'path',
+      'vinyl-named',
+      'webpack',
+      'webpack-stream',
     ],
     rename: {
+      '@netzstrategen/twig-asset': 'twigAsset',
       'node-sass-magic-importer': 'magicImporter',
-      '@netzstrategen/twig-asset': 'twigAsset'
+      'vinyl-named': 'named',
+      'webpack-stream': 'webpackStream',
     }
   });
 
