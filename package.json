@@ -1,6 +1,6 @@
 {
   "name": "@netzstrategen/gulp-task-collection",
-  "version": "4.0.0",
+  "version": "4.1.0",
   "title": "Gulp task collection",
   "description": "A collection of gulp tasks.",
   "license": "MIT",
@@ -30,10 +30,13 @@
     "gulp-sassvg": "^4.0.1",
     "gulp-svg-sprite": "^1.5.0",
     "gulp-touch-cmd": "0.0.1",
-    "gulp-uglify-es": "^0.1.4",
     "minimist": "^1.2.5",
     "node-sass-magic-importer": "^5.2.0",
-    "sassdoc": "^2.3.0"
+    "sassdoc": "^2.3.0",
+    "terser-webpack-plugin": "^5.3.3",
+    "vinyl-named": "^1.1.0",
+    "webpack": "^5.73.0",
+    "webpack-stream": "^7.0.0"
   },
   "browserslist": [
     "last 2 versions",
