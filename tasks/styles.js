@@ -3,6 +3,7 @@
 const getOptions = require('../lib/getOptions');
 const registerTaskWithProductionMode = require('../lib/registerTaskWithProductionMode');
 const path = require('path');
+const sass = require("gulp-sass")(require("sass"));
 
 module.exports = (gulp, $, pkg) => {
   const reportError = require('../lib/error.js');
@@ -35,7 +36,7 @@ module.exports = (gulp, $, pkg) => {
 
     let stream = gulp.src(pkg.gulpPaths.styles.src, { sourcemaps: options.sourcemaps })
       .pipe($.if(!options['fail-after-error'], $.plumber()))
-      .pipe($.sass({
+      .pipe(sass({
         importer: $.magicImporter({
           disableImportOnce: true
         }),
@@ -56,7 +57,7 @@ module.exports = (gulp, $, pkg) => {
       .pipe($.if(options.minify, $.rename({ suffix: '.min' })))
       .pipe($.if(options.minify, gulp.dest(pkg.gulpPaths.styles.dest)))
       .pipe($.touchCmd());
-    
+
     return stream;
   };
 
