@@ -2,6 +2,8 @@
 
 module.exports = (gulp, $, pkg) => {
   const buildTasks = [
+    'clean',
+    'images',
     typeof(pkg.gulpPaths.fonts) === 'undefined' ? '' : 'fonts',
     typeof(pkg.gulpPaths.icons) === 'undefined' ? '' : 'icons',
     typeof(pkg.gulpPaths.scripts) === 'undefined' ? '' : 'scripts',
@@ -9,13 +11,11 @@ module.exports = (gulp, $, pkg) => {
   ];
 
   // @task: Build all static assets.
-  gulp.task('build', gulp.series(
-    'clean',
-    'images',
-    gulp.parallel(buildTasks.filter(Boolean))
-  ));
+  gulp.task('build', gulp.series(buildTasks.filter(Boolean)));
 
   const productionBuildTasks = [
+    'clean',
+    'images',
     typeof(pkg.gulpPaths.fonts) === 'undefined' ? '' : 'fonts',
     typeof(pkg.gulpPaths.icons) === 'undefined' ? '' : 'icons',
     typeof(pkg.gulpPaths.scripts) === 'undefined' ? '' : 'scripts:production',
@@ -23,9 +23,5 @@ module.exports = (gulp, $, pkg) => {
   ];
 
   // @task: Build and minify all static assets.
-  gulp.task('build:production', gulp.series(
-    'clean',
-    'images',
-    gulp.parallel(productionBuildTasks.filter(Boolean))
-  ));
+  gulp.task('build:production', gulp.series(productionBuildTasks.filter(Boolean)));
 }
